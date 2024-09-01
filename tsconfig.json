@@ -14,10 +14,9 @@
       ],
       "@lib/*": [
         "lib/*"
-      ],
-      "@db/*": [
-        "lib/db/*"
       ]
-    }
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }

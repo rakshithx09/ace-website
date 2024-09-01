@@ -1,6 +1,7 @@
 ---
 import BaseHead from "@components/BaseHead.astro"
 import { SITE_TITLE, SITE_DESCRIPTION } from '@lib/constants';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title?: string;
@@ -14,6 +15,7 @@ const { title=SITE_TITLE ,description=SITE_DESCRIPTION  } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
+		<ViewTransitions />
 	</head>
 	<body>
 		<slot />
@@ -35,15 +37,8 @@ const { title=SITE_TITLE ,description=SITE_DESCRIPTION  } = Astro.props;
 		font-family: system-ui, sans-serif;
 		background: #13151a;
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+
+	body{
+		color: white;
 	}
 </style>

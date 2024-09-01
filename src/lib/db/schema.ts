@@ -6,8 +6,7 @@ export const userTable = sqliteTable('user', {
     name: text("name").notNull(),
     email: text("email").notNull().unique(),
     image: text("image"),
-    password: text("password").notNull(),
-    role: text("password", { enum: ["CORE", "MEMBER", "ADMIN"] }).default("MEMBER").notNull(),
+    role: text("role", { enum: ["CORE", "MEMBER", "ADMIN"] }).default("MEMBER").notNull(),
     joinedOn: text("joined_on").default(sql`CURRENT_TIMESTAMP`).notNull()
 });
 
@@ -85,7 +84,7 @@ export const commentsTable = sqliteTable('Comment', {
 export const viewTable = sqliteTable('View', {
     userId: integer("user_id").references(() => userTable.id).notNull(),
     blogId: integer("blog_id").references(() => blogTable.id).notNull(),
-    liked: integer("liked", { mode: "boolean" }).default(false)
+    liked: integer("liked", { mode: "boolean" })
 }, (table) => {
     return {
         pk: primaryKey({ columns: [table.userId, table.blogId] }),
