@@ -9,7 +9,4 @@ export default defineConfig({
   site: "https://example.com",
   integrations: [tailwind(), react(), icon()],
   output: "server",
-  experimental:{
-    actions:true
-  }
 });
