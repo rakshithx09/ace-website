@@ -12,20 +12,56 @@ import Footer from '@components/Footer.astro';
   <main class="content-container">
     <div class="mt-24 flex flex-col items-center">
       <h2 class="fade-up uppercase text-6xl text-center mb-9 mt-7 ">Meet the dev team</h2>
-      <div>
-        <div class="fade-up">
-          <DeveloperCard name="Varshith" description="All Hail Varshith" />
-        </div>
-        <div class="fade-up">
-          <DeveloperCard name="Varshith" description="All Hail Varshith" />
-        </div>
-        <div class="fade-up">
-          <DeveloperCard name="Varshith" description="All Hail Varshith" />
-        </div>
-        <div class="fade-up">
-          <DeveloperCard name="Varshith" description="All Hail Varshith" />
-        </div>
-      </div>
+      <div >
+				<div class="container">
+						<div class="fade-up">
+						<DeveloperCard name="Varshith" description="All Hail Varshith"  linkedinLink='#'githubLink='#'/>
+					</div>
+					<div class="fade-up">
+						<DeveloperCard name="Len" description="All Hail Varshith" linkedinLink='#'githubLink='#' />
+					</div>
+					<div class="fade-up">
+						<DeveloperCard name="Varshith" description="All Hail Varshith" linkedinLink='#'githubLink='#' />
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="fade-up">
+					<DeveloperCard name="Varshith" description="All Hail Varshith"  linkedinLink='#'githubLink='#'/>
+				</div>
+				<div class="fade-up">
+					<DeveloperCard name="Len" description="All Hail Varshith" linkedinLink='#'githubLink='#' />
+				</div>
+				<div class="fade-up">
+					<DeveloperCard name="Karthik" description="All Hail Varshith" linkedinLink='#'githubLink='#' />
+				</div>
+			</div>
+			<div class="container">
+				<div class="fade-up">
+				<DeveloperCard name="Varshith" description="All Hail Varshith"  linkedinLink='#'githubLink='#'/>
+			</div>
+			<div class="fade-up">
+				<DeveloperCard name="Len" description="All Hail Varshith" linkedinLink='#'githubLink='#' />
+			</div>
+			<div class="fade-up">
+				<DeveloperCard name="Varshith" description="All Hail Varshith" linkedinLink='#'githubLink='#' />
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="fade-up">
+			<DeveloperCard name="Varshith" description="All Hail Varshith"  linkedinLink='#'githubLink='#'/>
+		</div>
+		<div class="fade-up">
+			<DeveloperCard name="Len" description="All Hail Varshith" linkedinLink='#'githubLink='#' />
+		</div>
+		<div class="fade-up">
+			<DeveloperCard name="Varshith" description="All Hail Varshith" linkedinLink='#'githubLink='#' />
+		</div>
+	</div>
+
+
+        
     </div>
   </main>
   <Footer />
@@ -50,6 +86,14 @@ import Footer from '@components/Footer.astro';
 </html>
 
 <style is:global>
+	.container{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8rem;
+		justify-content: center;
+	}
+
+
 	@keyframes slideUp {
 		from {
 			opacity: 0;
