@@ -1,9 +1,54 @@
 ---
+import Gallery from '@components/landing/Gallery.astro';
 import Layout from '../layouts/Layout.astro';
+import Events from '@components/landing/Events.astro';
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<h1>Landing page</h1>
+
+		<!-- hero -->
+		<section class="hero content-container flex flex-col items-center justify-between py-6 md:py-16">
+			<div></div>
+
+			<div class="text-center space-y-4">
+				<h3 class="uppercase text-6xl">roar in the digital wilderness.</h3>
+				<p class="m-auto max-w-80 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. i animi dicta. Vitae id ullam minus, nesciunt alias tempore soluta.</p>
+			</div>
+
+			<div class="w-full flex items-center justify-between">
+				<span>Explore</span>
+				<span>Get in touch</span>
+			</div>
+		</section>
+
+		<!-- video -->
+		<section>
+
+		</section>
+
+		<!-- gallery preview -->
+		<Gallery/>
+
+		<!-- events -->
+		<Events/>
 	</main>
 </Layout>
+
+
+<style>
+
+	.hero span{
+		@apply border-2 border-blue-500 p-4 px-8 w-48 text-center;
+		border-radius: 9999px
+	}
+</style>
+
+
+<style is:global>
+	section{
+		width: 100%;
+		height: 100vh;
+		min-height: 400px;
+	}
+</style>

@@ -15,11 +15,23 @@ export const uploadStream = async (buffer: Uint8Array, options:UploadApiOptions)
         cloudinary.uploader
             .upload_stream(options, (error, result) => {
                 if (error) return reject(error);
-                resolve(result as unknown as UploadResponse);
+                resolve(result!);
             })
             .end(buffer);
     });
 };
+
+export const fileToBuffer=async (file:File)=>{
+    const arrayBuffer = await file.arrayBuffer();
+    return new Uint8Array(arrayBuffer)
+}
+
+
+export async function uploadImageToCloudinaryFromServer(file:File, options:UploadApiOptions) {
+    const buffer =await fileToBuffer(file);
+    return await uploadStream(buffer,options);
+}
+
 
 function svgStringToUint8Array(svgString: string) {
     // Convert the SVG string to a Buffer

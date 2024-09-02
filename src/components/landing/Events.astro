@@ -1,0 +1,127 @@
+---
+const cards = [
+    {
+        title:"jsddsg",
+        image:"/images/sample.png"
+    },
+    {
+        title:"jsddsg",
+        image:"/images/sample.png"
+    },
+    {
+        title:"jsddsg",
+        image:"/images/sample.png"
+    },
+    {
+        title:"jsddsg",
+        image:"/images/sample.png"
+    },
+    {
+        title:"jsddsg",
+        image:"/images/sample.png"
+    },
+    {
+        title:"jsddsg",
+        image:"/images/sample.png"
+    },
+    {
+        title:"jsddsg",
+        image:"/images/sample.png"
+    },
+    {
+        title:"jsddsg",
+        image:"/images/sample.png"
+    }
+]
+---
+
+
+
+<section class="content-container event-section grid grid-cols-1 lg:grid-cols-2 h-full gap-8 my-8">
+    <div class="cards-column">
+        {
+            cards.filter((_,i)=>(i%2)==0).map(card=>(
+                <div class="card">
+                    <img src={card.image} alt={card.title}/>
+                    {/* <h5>{card.title}</h5> */}
+                </div>
+            ))
+        }
+    </div>
+
+    <div class="cards-column second-column">
+        {cards.filter((_,i)=>i%2==1).map(card=>(
+                <div class="card">
+                    <img src={card.image} alt={card.title}/>
+                    {/* <h5>{card.title}</h5> */}
+                </div>
+        ))}
+    </div>
+</section>
+
+
+<style>
+    .event-section{
+        --card-height:400px;
+    }
+
+    .cards-column{
+        @apply flex flex-col gap-8  w-full h-full;
+    }
+
+    .card{
+        width: 100%;
+        height: var(--card-height);
+        @apply rounded-lg flex flex-col gap-2 bg-gray-700;
+    }
+
+    .card img{
+        @apply w-full h-full object-cover;
+    }
+
+    .second-column{
+        margin-top: calc( var(--card-height) / 2);
+    }
+
+</style>
+
+
+<script>
+    	import gsap from "gsap";
+    import ScrollTrigger from "gsap/dist/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger) 
+
+    //left cards
+    let leftCards = gsap.utils.toArray(".second-column .cards"); 
+	gsap.fromTo(
+        leftCards,
+      {
+        x:(i)=>i%2?"20%": "-80%",
+      },
+      {
+        x: (i)=>i%2?"-80%": "20%",
+        scrollTrigger: {
+            scrub:.3,
+            trigger: ".gallery-parent",
+            toggleActions: "play none none none",
+        },
+      },
+    );
+
+    //right cards
+    let rightCards = gsap.utils.toArray(".cards-column:first .cards"); 
+	gsap.fromTo(
+        rightCards,
+      {
+        x:(i)=>i%2?"20%": "-80%",
+      },
+      {
+        x: (i)=>i%2?"-80%": "20%",
+        scrollTrigger: {
+            scrub:.3,
+            trigger: ".gallery-parent",
+            toggleActions: "play none none none",
+        },
+      },
+    );
+</script>
