@@ -9,4 +9,8 @@ export default defineConfig({
   site: "https://example.com",
   integrations: [tailwind(), react(), icon()],
   output: "server",
+<<<<<<< HEAD
+=======
+
+>>>>>>> 96ddfe78f110e149fe1a91323ccf80de00d862cb
 });
