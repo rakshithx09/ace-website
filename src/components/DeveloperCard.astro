@@ -1,98 +1,152 @@
----
-
----
-
-<h2 class="uppercase text-6xl">Meet the dev team</h2>
-<div class="container">
-
-  <div class="scene">
-    <div class="card">
-      <div class="card__face card__face--front">
-        <img src="/images/dev1.jpeg" />
+<div class="cards-container">
+  <div class="card-item">
+    <div class="scene">
+      <div class="card">
+        <div class="card__face card__face--front">
+          <img src="/images/varshithitis.jpeg" />
+        </div>
+        <div class="card__face card__face--back">
+          <img src="/images/varshithitis1.png" />
+        </div>
       </div>
-      <div class="card__face card__face--back">
-        <img src="https://i.loli.net/2019/11/16/cqyJiYlRwnTeHmj.jpg" />
+    </div>
+    <div class="info-box">
+      <h3 class="text-xl font-bold text-white-700">Varshith</h3>
+      <p class="text-white-700">All Hail Varshith</p>
+      <div class="links">
+        <a href="https://github.com/your-github" class="text-white-500 hover:underline">GitHub</a>
+        <a href="https://linkedin.com/in/your-linkedin" class="text--500 hover:underline">LinkedIn</a>
       </div>
     </div>
   </div>
-
-
-  <div class="scene">
-    <div class="card">
-      <div class="card__face card__face--front">
-        <img src="/images/dev1.jpeg" />
-      </div>
-      <div class="card__face card__face--back">
-        <img src="https://i.loli.net/2019/11/16/cqyJiYlRwnTeHmj.jpg" />
-      </div>
-    </div>
-  </div>
-
-
-  <div class="scene">
-    <div class="card">
-      <div class="card__face card__face--front">
-        <img src="/images/dev1.jpeg" />
-      </div>
-      <div class="card__face card__face--back">
-        <img src="https://i.loli.net/2019/11/16/cqyJiYlRwnTeHmj.jpg" />
-      </div>
-    </div>
-  </div>
-
-</div>
   
+  <!-- /* 2nd card */ -->
+
+  <div class="cards-container">
+    <div class="card-item">
+      <div class="scene">
+        <div class="card">
+          <div class="card__face card__face--front">
+            <img src="/images/varshithitis.jpeg" />
+          </div>
+          <div class="card__face card__face--back">
+            <img src="/images/varshithitis1.png" />
+          </div>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3 class="text-xl font-bold text-white-700">Varshith</h3>
+        <p class="text-white-700">All Hail Varshith</p>
+        <div class="links">
+          <a href="https://github.com/your-github" class="text-white-500 hover:underline">GitHub</a>
+          <a href="https://linkedin.com/in/your-linkedin" class="text--500 hover:underline">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3rd card -->
+
+
+
+    <div class="cards-container">
+      <div class="card-item">
+        <div class="scene">
+          <div class="card">
+            <div class="card__face card__face--front">
+              <img src="/images/varshithitis.jpeg" />
+            </div>
+            <div class="card__face card__face--back">
+              <img src="/images/varshithitis1.png" />
+            </div>
+          </div>
+        </div>
+        <div class="info-box">
+          <h3 class="text-xl font-bold text-white-700">Varshith</h3>
+          <p class="text-white-700">All Hail Varshith</p>
+          <div class="links">
+            <a href="https://github.com/your-github" class="text-white-500 hover:underline">GitHub</a>
+            <a href="https://linkedin.com/in/your-linkedin" class="text--500 hover:underline">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+
+
 <style>
+  .cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rem; /* Adjust the gap between card items */
+  justify-content: center; /* Center the cards horizontally */
+}
 
-  .container{
-    display: flex;
-    margin-left: 4rem;
-    
-  }
-  .scene {
-    width: 240px; /* Adjust to match the card width */
-    height: 300px; /* Adjust to match the card height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 800px;
-    margin: 100px auto; /* Add margin to ensure it's not overlapping with the header */
-  }
+.card-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px; /* Match the card width */
+}
 
-  .card {
-    position: relative;
-    width: 240px;
-    height: 300px;
-    color: white;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    transition: transform 1s ease-in-out;
+.scene {
+  width: 300px; /* Match the card width */
+  height: 250px; /* Match the card height */
+  perspective: 800px;
+}
 
-    &:hover {
-      transform: rotateY(180deg);
-    }
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: white;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+}
 
-    .card__face {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      transition: 1s ease-in-out;
-      -webkit-box-reflect: below 0
-        linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.4));
+.card:hover {
+  transform: rotateY(180deg);
+}
 
-      img {
-        width: 240px;
-        height: 300px;
-        object-fit: cover;
-      }
-    }
+.card__face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition: 1s ease-in-out;
+  -webkit-box-reflect: below 0
+    linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.4));
+}
 
-    .card__face--back {
-      transform: rotateY(180deg);
-    }
-  }
+.card__face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.card__face--back {
+  transform: rotateY(180deg);
+}
+
+.info-box {
+  background-color: #13151a;
+  padding: 1.5rem;
+ 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 1rem;
+  width: 300px; /* Space between the card and the info box */
+}
+
+.info-box .links {
+  margin-top: 1rem; /* Space between description and links */
+}
+
+.info-box a {
+  display: block;
+  margin-bottom: 0.5rem; /* Space between GitHub and LinkedIn links */
+}
 </style>
-
