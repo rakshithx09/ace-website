@@ -5,50 +5,51 @@ import Events from '@components/landing/Events.astro';
 ---
 
 <Layout title="ACE">
-	<main>
+  <main>
+    <!-- hero -->
+    <section class="hero content-container flex flex-col items-center justify-between py-6 md:py-16">
+      <div></div>
 
-		<!-- hero -->
-		<section class="hero content-container flex flex-col items-center justify-between py-6 md:py-16">
-			<div></div>
+      <div class="text-center space-y-4">
+        <h3 class="uppercase text-6xl">Association of computer Engineers</h3>
+        <p class="m-auto max-w-80 text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. i animi dicta. Vitae id ullam minus, nesciunt alias
+          tempore soluta.
+        </p>
+      </div>
 
-			<div class="text-center space-y-4">
-				<h3 class="uppercase text-6xl">Association of computer Engineers</h3>
-				<p class="m-auto max-w-80 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. i animi dicta. Vitae id ullam minus, nesciunt alias tempore soluta.</p>
-			</div>
+      <div class="w-full flex items-center justify-between">
+        <span>Blogs</span>
+        <span>Get in touch</span>
+      </div>
+    </section>
 
-			<div class="w-full flex items-center justify-between">
-				<span>Blogs</span>
-				<span>Get in touch</span>
-			</div>
-		</section>
+    <!-- video -->
+    <section class="content-container grid place-content-center py-20 h-fit">
+      <video class="m-auto w-full h-fit rounded-3xl" muted autoplay loop>
+        <source src="/intro-video.mp4" type="video/mp4" />
+      </video>
+    </section>
 
-		<!-- video -->
-		<section>
+    <!-- gallery preview -->
+    <Gallery />
 
-		</section>
-
-		<!-- gallery preview -->
-		<Gallery/>
-
-		<!-- events -->
-		<Events/>
-	</main>
+    <!-- events -->
+    <Events />
+  </main>
 </Layout>
 
-
 <style>
-
-	.hero span{
-		@apply border-2 border-blue-500 p-4 px-8 w-48 text-center;
-		border-radius: 9999px
-	}
+  .hero span {
+    @apply border-2 border-blue-500 p-4 px-8 w-48 text-center;
+    border-radius: 9999px;
+  }
 </style>
 
-
 <style is:global>
-	section{
-		width: 100%;
-		height: 100vh;
-		min-height: 400px;
-	}
+  section {
+    width: 100%;
+    height: 100vh;
+    min-height: 400px;
+  }
 </style>

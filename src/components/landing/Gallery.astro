@@ -1,71 +1,70 @@
-<section class=" overflow-hidden gallery-parent">
-    <div class="gallery-container w-full h-full space-y-4">
-        <div class="flex gap-4 h-[75%] m-auto image-row">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-        </div>
-
-        <div class="flex gap-4 h-[75%] m-auto image-row">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-        </div>
-
-        <div class="flex gap-4 h-[75%] m-auto image-row">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-            <img src="images/sample.png" alt="fndf">
-        </div>
+<section class="overflow-hidden gallery-parent">
+  <div class="gallery-container w-full h-full space-y-4">
+    <div class="flex gap-4 h-[75%] m-auto image-row">
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
     </div>
+
+    <div class="flex gap-4 h-[75%] m-auto image-row">
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+    </div>
+
+    <div class="flex gap-4 h-[75%] m-auto image-row">
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+      <img src="images/sample.png" alt="fndf" />
+    </div>
+  </div>
 </section>
 
-
 <style>
-    img{
-        height: 100%;
-        aspect-ratio: 1;
-        object-fit: cover;
-    }
+  img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
 
-    .gallery-container{
-        transform: translate3d(0%,-90%,0) rotate(45deg);
-    }
+  .gallery-container {
+    transform: translate3d(0%, -90%, 0) rotate(45deg);
+  }
 </style>
 
 <script>
-	import gsap from "gsap";
-    import ScrollTrigger from "gsap/dist/ScrollTrigger";
-    gsap.registerPlugin(ScrollTrigger) 
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
 
-    let targets = gsap.utils.toArray(".image-row"); 
-	gsap.fromTo(
-        targets,
-      {
-        x:(i)=>i%2?"20%": "-80%",
+  let targets = gsap.utils.toArray('.image-row');
+  gsap.fromTo(
+    targets,
+    {
+      x: (i) => (i % 2 ? '20%' : '-80%'),
+    },
+    {
+      x: (i) => (i % 2 ? '-80%' : '20%'),
+      scrollTrigger: {
+        scrub: 0.3,
+        trigger: '.gallery-parent',
+        toggleActions: 'play none none none',
       },
-      {
-        x: (i)=>i%2?"-80%": "20%",
-        scrollTrigger: {
-            scrub:.3,
-            trigger: ".gallery-parent",
-            toggleActions: "play none none none",
-        },
-      },
-    );
+    }
+  );
 </script>

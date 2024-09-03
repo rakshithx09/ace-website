@@ -1,0 +1,50 @@
+---
+
+---
+
+<section id="scene">
+  <div data-depth="0.2" id="layer1">
+    <img src="" alt="" />
+  </div>
+
+  <div data-depth="0.4" id="layer2">
+    <div class="flex justify-around items-center m-auto w-full h-full">
+      <img src="/images/sample.png" alt="" />
+      <img src="/images/sample.png" alt="" />
+    </div>
+  </div>
+
+  <div data-depth="0.6" id="layer3">
+    <img src="" alt="" />
+  </div>
+</section>
+
+<style>
+  section {
+    width: 100%;
+    height: max(100vh, 400px);
+  }
+
+  section > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    height: 200px;
+    width: 200px;
+  }
+
+  #layer1 {
+  }
+
+  #layer2 {
+    display: flex;
+  }
+</style>
+
+<script>
+  import Parallax from 'parallax-js';
+  const scene = document.getElementById('scene') as HTMLDivElement;
+  const parallaxInstance = new Parallax(scene);
+</script>

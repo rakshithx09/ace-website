@@ -1,54 +1,49 @@
 ---
-import BaseHead from "@components/BaseHead.astro"
-import Footer from "@components/Footer.astro";
-import Header from "@components/Header.astro";
+import BaseHead from '@components/BaseHead.astro';
+import Footer from '@components/Footer.astro';
+import Header from '@components/Header.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '@lib/constants';
 import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
-	title?: string;
-	description?:string;
+  title?: string;
+  description?: string;
 }
 
-const { title=SITE_TITLE ,description=SITE_DESCRIPTION  } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<ViewTransitions />
-	</head>
-	<body>
-		<Header/>
-		<slot />
-		<Footer/>
-	</body>
+  <head>
+    <BaseHead title={title} description={description} />
+    <ViewTransitions />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
 </html>
+
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background: #13151a;
+  }
 
-	body{
-		color: white;
-	}
+  body {
+    color: white;
+  }
 
-
-	.content-container{
-		padding-left:  max(1rem,8vw);
-		padding-right:  max(1rem,8vw);
-	}
+  .content-container {
+    padding-left: max(1rem, 8vw);
+    padding-right: max(1rem, 8vw);
+  }
 </style>
