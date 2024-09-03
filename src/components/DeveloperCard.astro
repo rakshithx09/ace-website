@@ -9,8 +9,6 @@ type Props = {
 const { name, description, githubLink, linkedinLink }: Props = Astro.props;
 ---
 
-
-
 <div class="card-item">
   <div class="scene">
     <div class="card">
@@ -31,8 +29,8 @@ const { name, description, githubLink, linkedinLink }: Props = Astro.props;
     </div>
   </div>
 </div>
-  
-  <!-- /* 2nd card */
+
+<!-- /* 2nd card */
 
   <div class="card-item">
     <div class="scene">
@@ -80,83 +78,80 @@ const { name, description, githubLink, linkedinLink }: Props = Astro.props;
       </div>
     </div> -->
 
-
-
 <style>
   .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8rem; /* Adjust the gap between card items */
-  justify-content: center; /* Center the cards horizontally */
-}
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8rem; /* Adjust the gap between card items */
+    justify-content: center; /* Center the cards horizontally */
+  }
 
-.card-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px; /* Match the card width */
-}
+  .card-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px; /* Match the card width */
+  }
 
-.scene {
-  width: 300px; /* Match the card width */
-  height: 250px; /* Match the card height */
-  perspective: 800px;
-}
+  .scene {
+    width: 300px; /* Match the card width */
+    height: 250px; /* Match the card height */
+    perspective: 800px;
+  }
 
-.card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  color: white;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transition: transform 1s ease-in-out;
-}
+  .card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: white;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-in-out;
+  }
 
-.card:hover {
-  transform: rotateY(180deg);
-}
+  .card:hover {
+    transform: rotateY(180deg);
+  }
 
-.card__face {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  transition: 1s ease-in-out;
-  -webkit-box-reflect: below 0
-    linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.4));
-}
+  .card__face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: 1s ease-in-out;
+    -webkit-box-reflect: below 0 linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.4));
+  }
 
-.card__face img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-}
+  .card__face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
 
-.card__face--back {
-  transform: rotateY(180deg);
-}
+  .card__face--back {
+    transform: rotateY(180deg);
+  }
 
-.info-box {
-  background-color: #13151a;
-  padding: 1.5rem;
- 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  margin-top: 1rem;
-  width: 300px; /* Space between the card and the info box */
-}
+  .info-box {
+    background-color: #13151a;
+    padding: 1.5rem;
 
-.info-box .links {
-  margin-top: 1rem; /* Space between description and links */
-}
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 1rem;
+    width: 300px; /* Space between the card and the info box */
+  }
 
-.info-box a {
-  display: block;
-  margin-bottom: 0.5rem; /* Space between GitHub and LinkedIn links */
-}
+  .info-box .links {
+    margin-top: 1rem; /* Space between description and links */
+  }
+
+  .info-box a {
+    display: block;
+    margin-bottom: 0.5rem; /* Space between GitHub and LinkedIn links */
+  }
 </style>

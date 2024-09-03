@@ -1,127 +1,122 @@
 ---
 const cards = [
-    {
-        title:"jsddsg",
-        image:"/images/sample.png"
-    },
-    {
-        title:"jsddsg",
-        image:"/images/sample.png"
-    },
-    {
-        title:"jsddsg",
-        image:"/images/sample.png"
-    },
-    {
-        title:"jsddsg",
-        image:"/images/sample.png"
-    },
-    {
-        title:"jsddsg",
-        image:"/images/sample.png"
-    },
-    {
-        title:"jsddsg",
-        image:"/images/sample.png"
-    },
-    {
-        title:"jsddsg",
-        image:"/images/sample.png"
-    },
-    {
-        title:"jsddsg",
-        image:"/images/sample.png"
-    }
-]
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+];
 ---
 
-
-
-<section class="content-container event-section grid grid-cols-1 lg:grid-cols-2 h-full gap-8 my-8">
-    <div class="cards-column">
-        {
-            cards.filter((_,i)=>(i%2)==0).map(card=>(
-                <div class="card">
-                    <img src={card.image} alt={card.title}/>
-                    {/* <h5>{card.title}</h5> */}
-                </div>
-            ))
-        }
-    </div>
-
-    <div class="cards-column second-column">
-        {cards.filter((_,i)=>i%2==1).map(card=>(
-                <div class="card">
-                    <img src={card.image} alt={card.title}/>
-                    {/* <h5>{card.title}</h5> */}
-                </div>
-        ))}
-    </div>
+<section
+  class="content-container event-section grid grid-cols-1 lg:grid-cols-2 h-fit gap-8 my-8 overflow-hidden cards-grid"
+>
+  {
+    cards.map((card) => (
+      <div class="card">
+        <img src={card.image} alt={card.title} />
+        {/* <h5>{card.title}</h5> */}
+      </div>
+    ))
+  }
 </section>
 
-
 <style>
-    .event-section{
-        --card-height:400px;
-    }
+  .event-section {
+    --card-height: 400px;
+    margin-bottom: calc(var(--card-height) / 2);
+  }
 
-    .cards-column{
-        @apply flex flex-col gap-8  w-full h-full;
-    }
+  .cards-column {
+    @apply flex flex-col gap-8  w-full h-full;
+  }
 
-    .card{
-        width: 100%;
-        height: var(--card-height);
-        @apply rounded-lg flex flex-col gap-2 bg-gray-700;
-    }
+  .card {
+    width: 100%;
+    height: var(--card-height);
+    @apply rounded-[25px] flex flex-col gap-2 bg-gray-700;
+  }
 
-    .card img{
-        @apply w-full h-full object-cover;
-    }
+  .card img {
+    @apply w-full h-full object-cover;
+    border-radius: inherit;
+  }
 
-    .second-column{
-        margin-top: calc( var(--card-height) / 2);
+  @media (min-width: 1024px) {
+    .card:nth-child(even) {
+      margin-top: calc(var(--card-height) / 2);
+      margin-bottom: calc(-1 * var(--card-height) / 2);
     }
-
+    .cards-grid {
+      padding-bottom: calc(var(--card-height) / 2);
+    }
+  }
 </style>
 
-
 <script>
-    	import gsap from "gsap";
-    import ScrollTrigger from "gsap/dist/ScrollTrigger";
-    gsap.registerPlugin(ScrollTrigger) 
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
 
-    //left cards
-    let leftCards = gsap.utils.toArray(".second-column .cards"); 
-	gsap.fromTo(
-        leftCards,
-      {
-        x:(i)=>i%2?"20%": "-80%",
-      },
-      {
-        x: (i)=>i%2?"-80%": "20%",
-        scrollTrigger: {
-            scrub:.3,
-            trigger: ".gallery-parent",
-            toggleActions: "play none none none",
-        },
-      },
-    );
+  //left cards
+  const leftCards = document.querySelectorAll('.card:nth-child(odd)');
+  Array.from(leftCards).forEach((card) => {
+    gsap.from(card, {
+      x: -300,
+      opacity: 0,
+      rotate: '-45deg',
+      ease: 'power4.inOut',
 
-    //right cards
-    let rightCards = gsap.utils.toArray(".cards-column:first .cards"); 
-	gsap.fromTo(
-        rightCards,
-      {
-        x:(i)=>i%2?"20%": "-80%",
+      scrollTrigger: {
+        scrub: 0.3,
+        trigger: card,
+        end: 'center center',
+        toggleActions: 'play none none none',
       },
-      {
-        x: (i)=>i%2?"-80%": "20%",
-        scrollTrigger: {
-            scrub:.3,
-            trigger: ".gallery-parent",
-            toggleActions: "play none none none",
-        },
+    });
+  });
+
+  //right cards
+  const rightCards = document.querySelectorAll('.card:nth-child(even)');
+  Array.from(rightCards).forEach((card) => {
+    gsap.from(card, {
+      x: 300,
+      opacity: 0,
+      rotate: '45deg',
+      ease: 'power4.inOut',
+      scrollTrigger: {
+        scrub: 0.3,
+        trigger: card,
+        end: 'center center',
+        toggleActions: 'play none none none',
       },
-    );
+    });
+  });
 </script>
