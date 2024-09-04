@@ -2,6 +2,7 @@
 import DeveloperCard from '@components/DeveloperCard.astro';
 import Layout from '@layouts/Layout.astro';
 
+
 const developers = [
   { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
   { name: 'Len', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
@@ -34,28 +35,34 @@ const developers = [
   { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
   { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
 ];
+
+
 ---
 
 <Layout>
-  <main class="content-container">
-    <div class="mt-32 flex flex-col gap-8 items-center">
-      <h2 class="fade-up uppercase text-6xl text-center">Meet the dev team</h2>
-      <div class="flex flex-wrap gap-32 justify-center">
-        {
-          developers.map((dev, index) => (
-            <div class="item">
+
+
+    <main class="content-container">
+      <div class="mt-32 flex flex-col gap-8 items-center">
+        <h2 class="fade-up uppercase text-6xl text-center">Meet the dev team</h2>
+        <div class="flex flex-wrap gap-32 justify-center">
+          {
+            developers.map((dev, index) => (
+              <div class="item">
               <DeveloperCard
                 name={dev.name}
                 description={dev.description}
                 linkedinLink={dev.linkedinLink}
                 githubLink={dev.githubLink}
-              />
+                />
             </div>
           ))
         }
       </div>
+      
     </div>
   </main>
+
 </Layout>
 
 <style>
@@ -75,6 +82,8 @@ const developers = [
     transform: translateY(50px);
     animation: slideUp 1s ease-out forwards;
   }
+
+  
 </style>
 
 <script>
@@ -104,3 +113,138 @@ const developers = [
     gsap.set('.item', { y: 0 });
   });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ---
+import DeveloperCard from '@components/DeveloperCard.astro';
+import Layout from '@layouts/Layout.astro';
+
+const developers = [
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Len', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Karthik', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Len', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Karthik', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+];
+
+import { loadFull } from "tsparticles";
+---
+
+<!-- <Layout>
+  <main class="content-container">
+    <div id="tsparticles"></div> <!-- Particles container -->
+    <!-- <div class="mt-32 flex flex-col gap-8 items-center">
+      <h2 class="fade-up uppercase text-6xl text-center">Meet the dev team</h2>
+      <div class="flex flex-wrap gap-32 justify-center">
+        {
+          developers.map((dev, index) => (
+            <div class="item">
+            <DeveloperCard
+              name={dev.name}
+              description={dev.description}
+              linkedinLink={dev.linkedinLink}
+              githubLink={dev.githubLink}
+              />
+          </div>
+        ))
+      }
+    </div>
+
+    </div>
+    </main>
+    </Layout>
+
+    <style>
+    #tsparticles {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      z-index: -1; /* Ensures particles are behind other content */
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideUp 1s ease-out forwards;
+    }
+    </style>
+
+    <script>
+    import { loadFull } from "tsparticles";
+    import type { Engine } from "@tsparticles/engine";
+    import type { Container } from "tsparticles-engine";
+
+    declare global {
+      interface Window {
+        particlesInit: (engine: Engine) => Promise<void>;
+        particlesLoaded: (container: Container) => Promise<void>;
+      }
+    }
+
+    window.particlesInit = async function (engine: Engine) {
+      await loadFull(engine);
+    }
+
+    window.particlesLoaded = async function (container: Container): Promise<void> {
+      console.log("Particles Loaded");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const particlesContainer = document.getElementById("tsparticles");
+
+      if (particlesContainer) {
+        window.particlesInit(new Engine()).then(() => {
+          window.particlesLoaded(new Engine().get().container);
+        });
+      }
+    });
+    </script> -->
