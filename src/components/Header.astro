@@ -1,5 +1,5 @@
-<header class="w-full mt-8 fixed top-0 z-50">
-  <div class="content-container flex justify-between gap-4 items-center">
+<header class="w-full fixed top-0 z-50 backdrop-blur-sm" style="background-color: rgba(24, 23, 23, 0.3);">
+  <div class="content-container flex justify-between gap-4 items-center py-2">
     <a href="/">
       <img src="/images/logo.png" alt="ACE" class="h-16 w-auto" />
     </a>
@@ -15,6 +15,7 @@
 </header>
 
 <style>
+  
   nav > a {
     text-transform: capitalize;
     position: relative;
@@ -23,6 +24,7 @@
     overflow: hidden;
   }
 
+ 
   nav > a::after {
     content: '';
     position: absolute;
@@ -37,16 +39,27 @@
     border-radius: 0 0 5px 5px;
   }
 
+ 
   nav > a:hover::after {
     transform: scaleX(1);
   }
 
+  
   .nav-link {
     transition: transform 0.3s ease-out;
   }
 
+  
   .nav-link:hover {
     transform: scale(1.1);
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
   }
+
+  
+  .backdrop-blur-sm {
+    backdrop-filter: blur(10px);
+  }
+
+ 
+ 
 </style>
