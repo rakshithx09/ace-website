@@ -37,13 +37,14 @@ const developers = [
 ---
 
 <Layout>
-  <main class="content-container">
-    <div class="mt-32 flex flex-col gap-8 items-center">
-      <h2 class="fade-up uppercase text-6xl text-center">Meet the dev team</h2>
-      <div class="flex flex-wrap gap-32 justify-center">
-        {
-          developers.map((dev, index) => (
-            <div class="item">
+    <main class="content-container">
+      <div id="tsparticles"></div>
+      <div class="mt-32 flex flex-col gap-8 items-center">
+        <h2 class="fade-up uppercase text-6xl text-center">Meet the dev team</h2>
+        <div class="flex flex-wrap gap-32 justify-center">
+          {
+            developers.map((dev, index) => (
+              <div class="item">
               <DeveloperCard
                 name={dev.name}
                 description={dev.description}
@@ -60,8 +61,16 @@ const developers = [
 
 <style>
   body {
-    overflow-x: hidden;
-  }
+      overflow-x: hidden;
+    }
+  #tsparticles {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensures particles are behind other content */
+    }
   @keyframes slideUp {
     from {
       opacity: 0;
@@ -72,7 +81,6 @@ const developers = [
       transform: translateY(0);
     }
   }
-
   .fade-up {
     opacity: 0;
     transform: translateY(50px);
@@ -157,3 +165,4 @@ const developers = [
 
   loadParticles(configs);
 </script>
+
