@@ -1,4 +1,4 @@
----
+<!-- ---
 import DeveloperCard from '@components/DeveloperCard.astro';
 import Layout from '@layouts/Layout.astro';
 
@@ -114,57 +114,8 @@ const developers = [
 
   ScrollTrigger.addEventListener('refreshInit', () => {
     gsap.set('.item', { y: 0 });
-    //@ts-ignore
-import { tsParticles } from "https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/+esm";
-//@ts-ignore
-import { loadAll } from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.1.0/+esm";
-
-async function loadParticles(options:any) {
-  await loadAll(tsParticles);
-
-  await tsParticles.load({ id: "tsparticles", options });
-}
-
-const configs = {
-  particles: {
-    number: {
-      value: 20
-    },
-    color: {
-      value: "#ffffff"
-    },
-    links: {
-      enable: true,
-      distance: 200
-    },
-    shape: {
-      type: "circle"
-    },
-    opacity: {
-      value: 1
-    },
-    size: {
-      value: {
-        min: 4,
-        max: 6
-      }
-    },
-    move: {
-      enable: true,
-      speed: 2
-    }
-  },
-  background: {
-    color: "#000000"
-  },
-  poisson: {
-    enable: true
-  }
-};
-
-loadParticles(configs);
-  });
-</script>
+  })
+</script> -->
 
 
 
@@ -197,7 +148,7 @@ loadParticles(configs);
 
 
 
-<!-- ---
+---
 import DeveloperCard from '@components/DeveloperCard.astro';
 import Layout from '@layouts/Layout.astro';
 
@@ -218,10 +169,10 @@ const developers = [
 import { loadFull } from "tsparticles";
 ---
 
-<!-- <Layout>
+<Layout>
   <main class="content-container">
-    <div id="tsparticles"></div> <!-- Particles container -->
-    <!-- <div class="mt-32 flex flex-col gap-8 items-center">
+    <div id="tsparticles"></div> Particles container
+    <div class="mt-32 flex flex-col gap-8 items-center">
       <h2 class="fade-up uppercase text-6xl text-center">Meet the dev team</h2>
       <div class="flex flex-wrap gap-32 justify-center">
         {
@@ -271,32 +222,53 @@ import { loadFull } from "tsparticles";
     </style>
 
     <script>
-    import { loadFull } from "tsparticles";
-    import type { Engine } from "@tsparticles/engine";
-    import type { Container } from "tsparticles-engine";
+  //@ts-ignore
+  import {tsParticles} from "https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/+esm";
+  //@ts-ignore
+  import {loadAll}  from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.1.0/+esm";
 
-    declare global {
-      interface Window {
-        particlesInit: (engine: Engine) => Promise<void>;
-        particlesLoaded: (container: Container) => Promise<void>;
+  async function loadParticles(options:any) {
+    await loadAll(tsParticles);
+
+    await tsParticles.load({ id: "tsparticles", options });
+  }
+
+  const configs = {
+    particles: {
+      number: {
+        value: 20
+      },
+      color: {
+        value: "#ffffff"
+      },
+      links: {
+        enable: true,
+        distance: 200
+      },
+      shape: {
+        type: "circle"
+      },
+      opacity: {
+        value: 1
+      },
+      size: {
+        value: {
+          min: 4,
+          max: 6
+        }
+      },
+      move: {
+        enable: true,
+        speed: 2
       }
+    },
+    background: {
+      color: "#000000"
+    },
+    poisson: {
+      enable: true
     }
+  };
 
-    window.particlesInit = async function (engine: Engine) {
-      await loadFull(engine);
-    }
-
-    window.particlesLoaded = async function (container: Container): Promise<void> {
-      console.log("Particles Loaded");
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const particlesContainer = document.getElementById("tsparticles");
-
-      if (particlesContainer) {
-        window.particlesInit(new Engine()).then(() => {
-          window.particlesLoaded(new Engine().get().container);
-        });
-      }
-    });
-    </script> -->
+  loadParticles(configs);
+</script>
