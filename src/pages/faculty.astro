@@ -12,24 +12,27 @@ const teamMembers = [
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-
-<div class="wrapper">
-
-    <div class="card_Container">
-        {teamMembers.map((member) => (
-            <div class="card">
-                <div class="imbBx">
-                    <img src={member.image} alt={member.name} />
-                </div>
-                <div class="content">
-                    <div class="contentBx">
-                        <h3>{member.name} <br /><span>{member.position}</span></h3>
-                    </div>
+    <h2 class="fade-up uppercase text-6xl text-center">Faculty</h2>
+    <div class="wrapper">
+        <main class="content-container">
+            <div class="mt-32 flex flex-col gap-8 items-center">
+                <div class="card_Container">
+                    {teamMembers.map((member) => (
+                        <div class="card">
+                            <div class="imbBx">
+                                <img src={member.image} alt={member.name} />
+                            </div>
+                            <div class="content">
+                                <div class="contentBx">
+                                    <h3>{member.name} <br /><span>{member.position}</span></h3>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
-        ))}
+        </main>
     </div>
-</div>
 
 </Layout>
 <style>
@@ -148,4 +151,11 @@ const teamMembers = [
         color: #fff;
         font-size: 24px;
     }
+    
+    .fade-up {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideUp 1s ease-out forwards;
+  }
+
 </style>
