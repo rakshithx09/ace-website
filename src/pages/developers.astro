@@ -66,6 +66,9 @@ const developers = [
 </Layout>
 
 <style>
+  body {
+      overflow-x: hidden;
+    }
   @keyframes slideUp {
     from {
       opacity: 0;
@@ -111,6 +114,55 @@ const developers = [
 
   ScrollTrigger.addEventListener('refreshInit', () => {
     gsap.set('.item', { y: 0 });
+    //@ts-ignore
+import { tsParticles } from "https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/+esm";
+//@ts-ignore
+import { loadAll } from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.1.0/+esm";
+
+async function loadParticles(options:any) {
+  await loadAll(tsParticles);
+
+  await tsParticles.load({ id: "tsparticles", options });
+}
+
+const configs = {
+  particles: {
+    number: {
+      value: 20
+    },
+    color: {
+      value: "#ffffff"
+    },
+    links: {
+      enable: true,
+      distance: 200
+    },
+    shape: {
+      type: "circle"
+    },
+    opacity: {
+      value: 1
+    },
+    size: {
+      value: {
+        min: 4,
+        max: 6
+      }
+    },
+    move: {
+      enable: true,
+      speed: 2
+    }
+  },
+  background: {
+    color: "#000000"
+  },
+  poisson: {
+    enable: true
+  }
+};
+
+loadParticles(configs);
   });
 </script>
 
