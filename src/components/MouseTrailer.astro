@@ -1,0 +1,101 @@
+---
+
+---
+
+<div id="trailer" transition:persist>
+  <div id="trailer-icon"></div>
+</div>
+
+<style>
+  #trailer {
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 500ms ease;
+  }
+
+  body:hover > #trailer {
+    opacity: 1;
+  }
+
+  #trailer:not([data-type='none']) > #trailer-icon {
+    opacity: 1;
+  }
+
+  #trailer-icon {
+    font-size: 6px;
+    line-height: 4px;
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+</style>
+
+<script>
+  import { ContentType } from '@lib/constants';
+
+  function getContentType(value: string | null | undefined): ContentType {
+    if (value && Object.values(ContentType).includes(value as ContentType)) {
+      return value as ContentType;
+    }
+    return ContentType.None;
+  }
+
+  function getIcon(icon: ContentType | null) {
+    switch (icon) {
+      case ContentType.CardLink:
+        return 'link'; //<MoveUpRight />;
+      case ContentType.Video:
+        return 'video'; // <Play />;
+      default:
+        return null;
+    }
+  }
+
+  const trailer = document.getElementById('trailer') as HTMLDivElement;
+  const trailerIcon = document.getElementById('trailer-icon') as HTMLDivElement;
+
+  function setTrailerIcon(icon: ContentType) {
+    trailerIcon.innerHTML = getIcon(icon) ?? '';
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    window.addEventListener('mousemove', (e) => {
+      const interactable = e.target instanceof HTMLElement ? e.target?.closest('.interactable') : null;
+      const intersecting = interactable !== null;
+      const x = e.clientX - trailer.offsetWidth / 2;
+      const y = e.clientY - trailer.offsetHeight / 2;
+
+      const keyFrames = {
+        transform: `translate(${x}px,${y}px) scale(${intersecting ? '4' : '1'})`,
+      };
+
+      trailer.animate([keyFrames], {
+        duration: intersecting ? 200 : 800,
+        fill: 'forwards',
+      });
+
+      if (intersecting) {
+        if (interactable instanceof HTMLElement) {
+          const icon = getContentType(interactable.dataset.type);
+          if (icon !== null) {
+            document.documentElement.style.cursor = 'none';
+          } else {
+            document.documentElement.style.cursor = 'auto';
+          }
+          setTrailerIcon(icon);
+        }
+      } else {
+        document.documentElement.style.cursor = 'auto';
+        setTrailerIcon(ContentType.None);
+      }
+    });
+  });
+</script>
