@@ -1,10 +1,10 @@
-import { defineConfig } from "drizzle-kit";
+import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
-  dialect: "sqlite",
-  schema: "./src/lib/db/schema.ts",
-  out: "./drizzle/migrations",
-  driver: "turso",
+  dialect: 'sqlite',
+  schema: './src/lib/db/schema.ts',
+  out: './drizzle/migrations',
+  driver: 'turso',
   verbose: true,
   strict: true,
   dbCredentials: {

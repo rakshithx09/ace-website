@@ -14,7 +14,7 @@
           buildInputs = with pkgs; [
             bun
             turso-cli
-            nodejs
+            nodejs   #bun sometimes throws random error
           ];
           shellHook = with pkgs; ''
             bun i

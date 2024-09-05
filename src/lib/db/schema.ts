@@ -1,82 +1,69 @@
-import { or, relations, sql } from "drizzle-orm";
-import {
-  text,
-  integer,
-  sqliteTable,
-  primaryKey,
-} from "drizzle-orm/sqlite-core";
+import { or, relations, sql } from 'drizzle-orm';
+import { text, integer, sqliteTable, primaryKey } from 'drizzle-orm/sqlite-core';
 
-export const userTable = sqliteTable("user", {
-  id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  uid: text("uid").notNull(),
-  name: text("name").notNull(),
-  email: text("email").notNull().unique(),
-  image: text("image"),
-  year: integer("year", { mode: "number" }),
-  password: text("password").default(sql`NULL`),
-  role: text("role", { enum: ["CORE", "MEMBER", "ADMIN"] })
-    .default("MEMBER")
+export const userTable = sqliteTable('user', {
+  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  uid: text('uid').notNull(),
+  name: text('name').notNull(),
+  email: text('email').notNull().unique(),
+  image: text('image'),
+  year: integer('year', { mode: 'number' }),
+  password: text('password').default(sql`NULL`),
+  role: text('role', { enum: ['CORE', 'MEMBER', 'ADMIN'] })
+    .default('MEMBER')
     .notNull(),
-  joinedOn: text("joined_on")
+  joinedOn: text('joined_on')
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  photo: text("photo"),
+  photo: text('photo'),
 });
 
-export const eventTable = sqliteTable("event", {
-  id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  name: text("name").notNull(),
-  image: text("image").notNull(),
-  deadline: text("deadline"),
-  fromDate: text("from_date").notNull(),
-  toDate: text("to_date").notNull(),
-  description: text("description").notNull(),
-  venue: text("venue").notNull(),
-  minTeamSize: integer("min_team_size", { mode: "number" })
-    .default(1)
-    .notNull(),
-  maxTeamSize: integer("max_team_size", { mode: "number" })
-    .default(1)
-    .notNull(),
-  maxTeams: integer("maxTeams", { mode: "number" }),
-  state: text("state", { enum: ["DRAFT", "PUBLISHED", "LIVE", "COMPLETED"] })
-    .default("DRAFT")
+export const eventTable = sqliteTable('event', {
+  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  name: text('name').notNull(),
+  image: text('image').notNull(),
+  deadline: text('deadline'),
+  fromDate: text('from_date').notNull(),
+  toDate: text('to_date').notNull(),
+  description: text('description').notNull(),
+  venue: text('venue').notNull(),
+  minTeamSize: integer('min_team_size', { mode: 'number' }).default(1).notNull(),
+  maxTeamSize: integer('max_team_size', { mode: 'number' }).default(1).notNull(),
+  maxTeams: integer('maxTeams', { mode: 'number' }),
+  state: text('state', { enum: ['DRAFT', 'PUBLISHED', 'LIVE', 'COMPLETED'] })
+    .default('DRAFT')
     .notNull(), //enum
-  category: text("category", {
-    enum: ["WORKSHOP", "HACKATHON", "COMPETITION", "SPECIAL"],
+  category: text('category', {
+    enum: ['WORKSHOP', 'HACKATHON', 'COMPETITION', 'SPECIAL'],
   }).notNull(), //enum
-  amount: integer("amount", { mode: "number" }).default(0).notNull(),
+  amount: integer('amount', { mode: 'number' }).default(0).notNull(),
   // state            EventState @default (DRAFT)
   // isLegacy         Boolean @default (false)
-  createdAt: text("created_at")
+  createdAt: text('created_at')
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
 
-export const teamTable = sqliteTable("team", {
-  id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  name: text("name").notNull(),
-  isConfirmed: integer("is_confirmed", { mode: "boolean" })
-    .default(false)
-    .notNull(),
-  hasAttended: integer("has_attended", { mode: "boolean" })
-    .default(false)
-    .notNull(),
-  eventId: integer("event_id")
+export const teamTable = sqliteTable('team', {
+  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  name: text('name').notNull(),
+  isConfirmed: integer('is_confirmed', { mode: 'boolean' }).default(false).notNull(),
+  hasAttended: integer('has_attended', { mode: 'boolean' }).default(false).notNull(),
+  eventId: integer('event_id')
     .references(() => eventTable.id)
     .notNull(),
-  createdAt: text("created_at")
+  createdAt: text('created_at')
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
 
 export const userTeamTable = sqliteTable(
-  "user_team",
+  'user_team',
   {
-    userId: integer("user_id")
+    userId: integer('user_id')
       .references(() => userTable.id)
       .notNull(),
-    teamId: integer("team_id")
+    teamId: integer('team_id')
       .references(() => teamTable.id)
       .notNull(),
   },
@@ -84,16 +71,16 @@ export const userTeamTable = sqliteTable(
     return {
       pk: primaryKey({ columns: [table.userId, table.teamId] }),
     };
-  }
+  },
 );
 
 export const organiserTable = sqliteTable(
-  "organiser",
+  'organiser',
   {
-    eventId: integer("event_id")
+    eventId: integer('event_id')
       .references(() => eventTable.id)
       .notNull(),
-    userId: integer("user_id")
+    userId: integer('user_id')
       .references(() => userTable.id)
       .notNull(),
   },
@@ -101,19 +88,19 @@ export const organiserTable = sqliteTable(
     return {
       pk: primaryKey({ columns: [table.eventId, table.userId] }),
     };
-  }
+  },
 );
 
 export const winnerTable = sqliteTable(
-  "winner",
+  'winner',
   {
-    type: text("type", {
-      enum: ["WINNER", "RUNNER_UP", "SECOND_RUNNER_UP"],
+    type: text('type', {
+      enum: ['WINNER', 'RUNNER_UP', 'SECOND_RUNNER_UP'],
     }).notNull(),
-    eventId: integer("event_id")
+    eventId: integer('event_id')
       .references(() => eventTable.id)
       .notNull(),
-    teamId: integer("user_id")
+    teamId: integer('user_id')
       .references(() => teamTable.id)
       .notNull(),
   },
@@ -121,40 +108,40 @@ export const winnerTable = sqliteTable(
     return {
       pk: primaryKey({ columns: [table.eventId, table.teamId] }),
     };
-  }
+  },
 );
 
-export const blogTable = sqliteTable("blog", {
-  id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  title: text("title").notNull(),
-  image: text("image"),
-  description: text("description").notNull(),
-  content: text("content").notNull(),
-  state: text("state", { enum: ["DRAFT", "PUBLISHED"] })
-    .default("DRAFT")
+export const blogTable = sqliteTable('blog', {
+  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  title: text('title').notNull(),
+  image: text('image'),
+  description: text('description').notNull(),
+  content: text('content').notNull(),
+  state: text('state', { enum: ['DRAFT', 'PUBLISHED'] })
+    .default('DRAFT')
     .notNull(),
-  authorId: integer("author_id")
+  authorId: integer('author_id')
     .references(() => userTable.id)
     .notNull(),
-  createdAt: text("created_at")
+  createdAt: text('created_at')
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
 
 export const commentsTable = sqliteTable(
-  "Comment",
+  'Comment',
   {
-    userId: integer("user_id")
+    userId: integer('user_id')
       .references(() => userTable.id)
       .notNull(),
-    blogId: integer("blog_id")
+    blogId: integer('blog_id')
       .references(() => blogTable.id)
       .notNull(),
-    content: text("content").notNull(),
-    updatedAt: text("updated_at")
+    content: text('content').notNull(),
+    updatedAt: text('updated_at')
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    createdAt: text("created_at")
+    createdAt: text('created_at')
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
   },
@@ -162,25 +149,25 @@ export const commentsTable = sqliteTable(
     return {
       pk: primaryKey({ columns: [table.userId, table.blogId] }),
     };
-  }
+  },
 );
 
 export const viewTable = sqliteTable(
-  "View",
+  'View',
   {
-    userId: integer("user_id")
+    userId: integer('user_id')
       .references(() => userTable.id)
       .notNull(),
-    blogId: integer("blog_id")
+    blogId: integer('blog_id')
       .references(() => blogTable.id)
       .notNull(),
-    liked: integer("liked", { mode: "boolean" }).default(false),
+    liked: integer('liked', { mode: 'boolean' }).default(false),
   },
   (table) => {
     return {
       pk: primaryKey({ columns: [table.userId, table.blogId] }),
     };
-  }
+  },
 );
 
 //RELATIONS

@@ -1,0 +1,72 @@
+---
+import Quill from '@components/Quill';
+import Layout from '@layouts/Layout.astro';
+import { db } from '@lib/db';
+import { blogTable } from '@lib/db/schema';
+import { eq, and } from 'drizzle-orm/sqlite-core/expressions';
+
+const userId = 1;
+
+interface Props {
+  id: 'new' | number;
+}
+
+const { id } = Astro.props;
+
+let blog;
+
+if (id != 'new') {
+  const blogs = await db
+    .select({
+      id: blogTable.id,
+      title: blogTable.title,
+      content: blogTable.content,
+      description: blogTable.description,
+      image: blogTable.image,
+    })
+    .from(blogTable)
+    .where(and(eq(blogTable.id, id), eq(blogTable.authorId, userId)));
+
+  if (!blogs.length) return Astro.redirect('/blogs');
+
+  blog = blogs[0];
+}
+---
+
+<Layout title="create recipe">
+  <form class="flex flex-col gap-4 mx-auto max-w-[500px]" enctype="multipart/form-data" id="blog-form">
+    <h3>Create Recipe</h3>
+    <label>
+      <p>title</p>
+      <input type="text" name="title" required class="w-full" value={blog?.title} />
+    </label>
+
+    <label>
+      <p>description</p>
+      <textarea name="description" class="w-full" value={blog?.title}> </textarea>
+    </label>
+    <label>
+      <p>description</p>
+      <Quill client:only="react" initialValue={blog?.content} name="content" />
+    </label>
+
+    <label>
+      <p>Image</p>
+      <input type="file" class="w-full" name="image" />
+    </label>
+
+    <input type="text" name="authorId" hidden value={userId} />
+    <button class="">Submit</button>
+  </form>
+</Layout>
+
+<style is:global>
+  /* markdown editor */
+  .ql-container {
+    @apply min-h-40;
+  }
+
+  input {
+    color: black;
+  }
+</style>

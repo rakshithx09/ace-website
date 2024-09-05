@@ -1,0 +1,21 @@
+---
+import BlogEditor from "@components/BlogEditor.astro";
+import Layout from "@layouts/Layout.astro";
+
+const { slug } = Astro.params;
+---
+
+<Layout>
+    <BlogEditor id={Number(slug)}/>
+</Layout>
+
+<script>
+    import { actions } from "astro:actions";
+
+    const form = document.querySelector("#blog-form") as HTMLFormElement;
+    form.addEventListener("submit",async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target as HTMLFormElement);
+        const result = await actions.editBlog(formData);
+      })
+</script>

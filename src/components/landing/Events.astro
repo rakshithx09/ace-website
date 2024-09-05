@@ -1,0 +1,122 @@
+---
+const cards = [
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+  {
+    title: 'jsddsg',
+    image: '/images/sample.png',
+  },
+];
+---
+
+<section
+  class="content-container event-section grid grid-cols-1 lg:grid-cols-2 h-fit gap-8 my-8 overflow-hidden cards-grid"
+>
+  {
+    cards.map((card) => (
+      <div class="card">
+        <img src={card.image} alt={card.title} />
+        {/* <h5>{card.title}</h5> */}
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .event-section {
+    --card-height: 400px;
+    margin-bottom: calc(var(--card-height) / 2);
+  }
+
+  .cards-column {
+    @apply flex flex-col gap-8  w-full h-full;
+  }
+
+  .card {
+    width: 100%;
+    height: var(--card-height);
+    @apply rounded-[25px] flex flex-col gap-2 bg-gray-700;
+  }
+
+  .card img {
+    @apply w-full h-full object-cover;
+    border-radius: inherit;
+  }
+
+  @media (min-width: 1024px) {
+    .card:nth-child(even) {
+      margin-top: calc(var(--card-height) / 2);
+      margin-bottom: calc(-1 * var(--card-height) / 2);
+    }
+    .cards-grid {
+      padding-bottom: calc(var(--card-height) / 2);
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  //left cards
+  const leftCards = document.querySelectorAll('.card:nth-child(odd)');
+  Array.from(leftCards).forEach((card) => {
+    gsap.from(card, {
+      x: -300,
+      opacity: 0,
+      rotate: '-45deg',
+      ease: 'power4.inOut',
+
+      scrollTrigger: {
+        scrub: 0.3,
+        trigger: card,
+        end: 'center center',
+        toggleActions: 'play none none none',
+      },
+    });
+  });
+
+  //right cards
+  const rightCards = document.querySelectorAll('.card:nth-child(even)');
+  Array.from(rightCards).forEach((card) => {
+    gsap.from(card, {
+      x: 300,
+      opacity: 0,
+      rotate: '45deg',
+      ease: 'power4.inOut',
+      scrollTrigger: {
+        scrub: 0.3,
+        trigger: card,
+        end: 'center center',
+        toggleActions: 'play none none none',
+      },
+    });
+  });
+</script>
