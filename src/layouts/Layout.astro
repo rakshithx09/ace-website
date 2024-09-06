@@ -57,8 +57,8 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
   }
   #tsparticles {
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+  width: 100%;
+  height: 100%;
     top: 0;
     left: 0;
     z-index: -1; /* Ensures particles are behind other content */
@@ -72,52 +72,115 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 
   document.addEventListener('astro:page-load', () => {
     
-    
     async function loadParticles(options: any) {
-      await loadAll(tsParticles);
+  await loadAll(tsParticles);
+  await tsParticles.load({ id: 'tsparticles', options });
+}
+
+const particlesConfig = {
+  particles: {
+    number: {
+      value: 200,
+      density: {
+        enable: true,
+        value_area: 789.1476416322727,
+      },
+    },
+    color: {
+      value: "#ffffff",
+    },
+    shape: {
+      type: "circle",
+      stroke: {
+        width: 0,
+        color: "#000000",
+      },
+      polygon: {
+        nb_sides: 6,
+      },
       
-      await tsParticles.load({ id: 'tsparticles', options });
-    }
-    
-    const fireflyConfig = {
-      particles: {
-        number: {
-          value: 50, // More particles for fireflies
-        },
-        color: {
-          value: "#FFFF", // Yellow, like fireflies
-        },
-        shape: {
-          type: "circle",
-        },
-        opacity: {
-          value: 0.8, // Slightly transparent
-          random: true, // Flickering effect
-          anim: {
-            enable: true,
-            speed: 1, // Speed of opacity changes
-            opacity_min: 0.4,
-            sync: false,
-          },
-        },
-        size: {
-          value: 3,
-          random: true,
-        },
-        move: {
-          enable: true,
-          speed: 1, // Slow movement
-          direction: "none",
-          random: true,
-          out_mode: "bounce", // Bounce off edges like fireflies
+    },
+    opacity: {
+      value: 0.48927153781200905,
+      random: true,
+      anim: {
+        enable: true,
+        speed: 0.2,
+        opacity_min: 0,
+        sync: false,
+      },
+    },
+    size: {
+      value: 2,
+      random: true,
+      anim: {
+        enable: true,
+        speed: 6,
+        size_min: 0,
+        sync: false,
+      },
+    },
+    move: {
+      enable: true,
+      speed: 0.6,
+      direction: "none",
+      random: true,
+      straight: false,
+      out_mode: "out",
+      bounce: true,
+      attract: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 1200,
+      },
+    },
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "push",
+      },
+      onclick: {
+        enable: true,
+        mode: "push",
+      },
+      resize: true,
+    },
+    modes: {
+      grab: {
+        distance: 400,
+        line_linked: {
+          opacity: 1,
         },
       },
+      bubble: {
+        distance: 83.91608391608392,
+        size: 1,
+        duration: 3,
+        opacity: 1,
+        speed: 3,
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4,
+      },
+      push: {
+        particles_nb: 4,
+      },
+      remove: {
+        particles_nb: 2,
+      },
+    },
+  },
+  retina_detect: true,
   background: {
     color: "#13151a", // Dark background
   },
 };
 
-loadParticles(fireflyConfig);
+loadParticles(particlesConfig);
 })
 
 
