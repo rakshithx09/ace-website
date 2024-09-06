@@ -1,1 +1,0 @@
-import{n as r}from"./hoisted.DYnvkOtc.js";import{a as e}from"./_astro_actions.B2SrBwE2.js";const n=document.querySelector("#blog-form");n.addEventListener("submit",async t=>{t.preventDefault();const a=new FormData(t.target),{data:o,error:m}=await e.createBlog(a);o?.blogId&&r(`/blogs/${o.blogId}`)});
