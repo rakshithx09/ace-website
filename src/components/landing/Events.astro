@@ -36,16 +36,24 @@ const cards = [
 ---
 
 <section
-  class="content-container event-section grid grid-cols-1 lg:grid-cols-2 h-fit gap-8 my-8 overflow-hidden cards-grid"
+  class="content-container event-section h-fit my-8 overflow-hidden"
 >
-  {
-    cards.map((card) => (
-      <div class="card">
-        <img src={card.image} alt={card.title} />
-        {/* <h5>{card.title}</h5> */}
-      </div>
-    ))
-  }
+  <div class="grid grid-cols-1 lg:grid-cols-2 h-fit gap-8 cards-grid ">
+    {
+      cards.map((card) => (
+        <div class="card interactable" data-type="link">
+          <img src={card.image} alt={card.title} />
+          {/* <h5>{card.title}</h5> */}
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="mx-auto mt-32 w-36 aspect-square bg-white text-black rounded-full grid place-content-center text-center">
+    <span>
+      view more
+    </span>
+  </div>
 </section>
 
 <style>

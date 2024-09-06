@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "0d77b603-d22d-44b0-bf77-dda6b6570c16",
+  "id": "f9afe3c4-f35d-4f2b-a170-64141cd88e67",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "blog": {
@@ -72,12 +72,8 @@
           "name": "blog_author_id_user_id_fk",
           "tableFrom": "blog",
           "tableTo": "user",
-          "columnsFrom": [
-            "author_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["author_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -132,12 +128,8 @@
           "name": "Comment_user_id_user_id_fk",
           "tableFrom": "Comment",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -145,22 +137,15 @@
           "name": "Comment_blog_id_blog_id_fk",
           "tableFrom": "Comment",
           "tableTo": "blog",
-          "columnsFrom": [
-            "blog_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["blog_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
         "Comment_user_id_blog_id_pk": {
-          "columns": [
-            "user_id",
-            "blog_id"
-          ],
+          "columns": ["user_id", "blog_id"],
           "name": "Comment_user_id_blog_id_pk"
         }
       },
@@ -309,12 +294,8 @@
           "name": "organiser_event_id_event_id_fk",
           "tableFrom": "organiser",
           "tableTo": "event",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["event_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -322,22 +303,15 @@
           "name": "organiser_user_id_user_id_fk",
           "tableFrom": "organiser",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
         "organiser_event_id_user_id_pk": {
-          "columns": [
-            "event_id",
-            "user_id"
-          ],
+          "columns": ["event_id", "user_id"],
           "name": "organiser_event_id_user_id_pk"
         }
       },
@@ -398,12 +372,8 @@
           "name": "team_event_id_event_id_fk",
           "tableFrom": "team",
           "tableTo": "event",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["event_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -420,6 +390,13 @@
           "primaryKey": true,
           "notNull": true,
           "autoincrement": true
+        },
+        "uid": {
+          "name": "uid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
         },
         "name": {
           "name": "name",
@@ -472,14 +449,19 @@
           "notNull": true,
           "autoincrement": false,
           "default": "CURRENT_TIMESTAMP"
+        },
+        "photo": {
+          "name": "photo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
       "indexes": {
         "user_email_unique": {
           "name": "user_email_unique",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         }
       },
@@ -511,12 +493,8 @@
           "name": "user_team_user_id_user_id_fk",
           "tableFrom": "user_team",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -524,22 +502,15 @@
           "name": "user_team_team_id_team_id_fk",
           "tableFrom": "user_team",
           "tableTo": "team",
-          "columnsFrom": [
-            "team_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["team_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
         "user_team_user_id_team_id_pk": {
-          "columns": [
-            "user_id",
-            "team_id"
-          ],
+          "columns": ["user_id", "team_id"],
           "name": "user_team_user_id_team_id_pk"
         }
       },
@@ -577,12 +548,8 @@
           "name": "View_user_id_user_id_fk",
           "tableFrom": "View",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -590,22 +557,15 @@
           "name": "View_blog_id_blog_id_fk",
           "tableFrom": "View",
           "tableTo": "blog",
-          "columnsFrom": [
-            "blog_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["blog_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
         "View_user_id_blog_id_pk": {
-          "columns": [
-            "user_id",
-            "blog_id"
-          ],
+          "columns": ["user_id", "blog_id"],
           "name": "View_user_id_blog_id_pk"
         }
       },
@@ -642,12 +602,8 @@
           "name": "winner_event_id_event_id_fk",
           "tableFrom": "winner",
           "tableTo": "event",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["event_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -655,22 +611,15 @@
           "name": "winner_user_id_team_id_fk",
           "tableFrom": "winner",
           "tableTo": "team",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
         "winner_event_id_user_id_pk": {
-          "columns": [
-            "event_id",
-            "user_id"
-          ],
+          "columns": ["event_id", "user_id"],
           "name": "winner_event_id_user_id_pk"
         }
       },

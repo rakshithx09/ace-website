@@ -1,0 +1,58 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { app } from "../firebase/server";
+import { getAuth } from "firebase-admin/auth";
+
+
+/* Check if the user is authenticated */
+const auth = getAuth(app);
+if (Astro.cookies.has("__session")) {
+  const sessionCookie = Astro.cookies.get("__session")?.value;
+ if(sessionCookie){
+  const decodedCookie = await auth.verifySessionCookie(sessionCookie);
+  if (decodedCookie){
+    return Astro.redirect("/");
+  }}  
+}
+
+---
+
+<Layout>
+    
+ <main class="flex flex-col items-center justify-center h-screen">
+      <button id="auth-button" class="p-4 bg-blue-950 text-white">SignUp</button>
+   
+ </main>
+
+
+
+    <script>
+import { actions } from "astro:actions";
+import { auth, provider, signInWithPopup, inMemoryPersistence } from "../firebase/client"
+ auth.setPersistence(inMemoryPersistence);
+
+        const handleSignUpOrLogin=async()=>{
+            const result = await signInWithPopup(auth, provider);
+            const {email,displayName,uid,photoURL} = result.user;
+            if(email && displayName && uid && photoURL){
+            const {data,error}= await  actions.createAccount({email,displayName,uid,photoURL});
+              if(error){
+                alert(error.message);
+                return;
+              }
+              const idToken = await result.user.getIdToken();
+              const res = await fetch("/api/auth/signin", {
+               headers: {
+                 Authorization: `Bearer ${idToken}`,
+                },
+              });
+
+              if (res.redirected) {
+                  window.location.assign(res.url);
+             }
+            }  
+        }
+
+        const button = document.querySelector('#auth-button')?.addEventListener('click',handleSignUpOrLogin);
+    </script>
+</Layout>
