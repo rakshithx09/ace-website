@@ -1,0 +1,20 @@
+---
+import { getSession } from 'auth-astro/server';
+
+const session = await getSession(Astro.request);
+---
+
+<html>
+  <body>
+    {session ? <p>Welcome {session.user?.name}</p> : <p>Not logged in</p>}
+
+    <button id="login">Login</button>
+    <button id="logout">Logout</button>
+  </body>
+</html>
+
+<script>
+  const { signIn, signOut } = await import('auth-astro/client');
+  (document.querySelector('#login') as HTMLButtonElement).onclick = () => signIn('github');
+  (document.querySelector('#logout') as HTMLButtonElement).onclick = () => signOut();
+</script>
