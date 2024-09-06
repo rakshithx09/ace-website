@@ -3,7 +3,6 @@ import { userTable } from '@lib/db/schema';
 import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro:content';
 import { eq } from 'drizzle-orm';
-import { auth } from '../../firebase/client';
 
 export const createAccount = defineAction({
   accept: 'json',
@@ -31,8 +30,6 @@ export const createAccount = defineAction({
         message: 'User created',
       };
     }
-
-    console.log(auth.currentUser);
 
     return {
       message: 'User logged in',

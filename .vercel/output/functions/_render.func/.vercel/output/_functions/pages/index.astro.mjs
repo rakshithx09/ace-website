@@ -1,9 +1,9 @@
 /* empty css                                  */
-import { a as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, b as renderComponent } from '../chunks/astro/server_CuGB0Mp9.mjs';
+import { a as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, c as createAstro, b as renderComponent } from '../chunks/astro/server_CuGB0Mp9.mjs';
 import 'kleur/colors';
 import 'clsx';
 /* empty css                                 */
-import { $ as $$Layout } from '../chunks/Layout_CFnpzb-_.mjs';
+import { $ as $$Layout } from '../chunks/Layout_CTh15CE6.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Gallery = createComponent(($$result, $$props, $$slots) => {
@@ -50,8 +50,12 @@ view more
 </span> </div> </section>  `;
 }, "C:/Users/Len/OneDrive/Desktop/ACE/ace-website/src/components/landing/Events.astro", void 0);
 
+const $$Astro = createAstro("https://example.com");
 const $$Index = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "ACE", "data-astro-cid-j7pv25f6": true }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main data-astro-cid-j7pv25f6> <!-- hero --> <section class="hero content-container flex flex-col items-center justify-between py-6 md:py-16" data-astro-cid-j7pv25f6> <div data-astro-cid-j7pv25f6></div> <div class="text-center space-y-4" data-astro-cid-j7pv25f6> <h3 class="uppercase text-6xl" data-astro-cid-j7pv25f6>Association of computer Engineers</h3> <p class="m-auto max-w-80 text-sm" data-astro-cid-j7pv25f6>
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Index;
+  const { name } = Astro2.locals;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "ACE", "data-astro-cid-j7pv25f6": true }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main data-astro-cid-j7pv25f6> <!-- hero --> <section class="hero content-container flex flex-col items-center justify-between py-6 md:py-16" data-astro-cid-j7pv25f6> <div data-astro-cid-j7pv25f6></div> ${name && renderTemplate`<div class="mt-5 content-container text-white" data-astro-cid-j7pv25f6>Hello ${name}!</div>`} <div class="text-center space-y-4" data-astro-cid-j7pv25f6> <h3 class="uppercase text-6xl" data-astro-cid-j7pv25f6>Association of computer Engineers</h3> <p class="m-auto max-w-80 text-sm" data-astro-cid-j7pv25f6>
 Lorem ipsum dolor sit amet consectetur adipisicing elit. i animi dicta. Vitae id ullam minus, nesciunt alias
           tempore soluta.
 </p> </div> <div class="w-full flex items-center justify-between" data-astro-cid-j7pv25f6> <span data-astro-cid-j7pv25f6>Blogs</span> <span data-astro-cid-j7pv25f6>Get in touch</span> </div> </section> <!-- video --> <section class="content-container grid place-content-center py-20 h-fit" data-astro-cid-j7pv25f6> <video class="m-auto w-full h-fit rounded-3xl" muted autoplay loop data-astro-cid-j7pv25f6> <source src="/intro-video.mp4" type="video/mp4" data-astro-cid-j7pv25f6> </video> </section> <!-- gallery preview --> ${renderComponent($$result2, "Gallery", $$Gallery, { "data-astro-cid-j7pv25f6": true })} <!-- events --> ${renderComponent($$result2, "Events", $$Events, { "data-astro-cid-j7pv25f6": true })} </main> ` })}  `;

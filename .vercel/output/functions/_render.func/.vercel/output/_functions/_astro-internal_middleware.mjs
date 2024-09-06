@@ -1,20 +1,9 @@
-import { d as defineMiddleware, s as sequence } from './chunks/index_BhgBF6ra.mjs';
-import { a as auth } from './chunks/client_DUwbTVIk.mjs';
 import 'es-module-lexer';
 import { A as ACTION_QUERY_PARAMS, s as serializeActionResult } from './chunks/shared_BAi5LP7w.mjs';
 import 'cookie';
+import { d as defineMiddleware, s as sequence } from './chunks/index_BhgBF6ra.mjs';
 import { yellow } from 'kleur/colors';
-import { g as getAction, h as hasContentType, f as formContentTypes } from './chunks/get-action_DpuWKZVX.mjs';
-
-const onRequest$2 = defineMiddleware((context, next) => {
-  const currentUser = auth.currentUser;
-  console.log(currentUser);
-  if (currentUser) {
-    context.locals.email = currentUser.email;
-    context.locals.name = currentUser.displayName;
-  }
-  return next();
-});
+import { g as getAction, h as hasContentType, f as formContentTypes } from './chunks/get-action_mynTb94n.mjs';
 
 const onRequest$1 = defineMiddleware(async (context, next) => {
   if (context._isPrerendered) {
@@ -111,7 +100,7 @@ function isActionPayload(json) {
 
 const onRequest = sequence(
 	
-	onRequest$2,
+	
 	onRequest$1
 );
 

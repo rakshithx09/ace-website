@@ -3,7 +3,7 @@ import { c as createAstro, a as createComponent, r as renderTemplate, m as maybe
 import 'kleur/colors';
 import 'clsx';
 /* empty css                                      */
-import { $ as $$Layout } from '../chunks/Layout_CFnpzb-_.mjs';
+import { $ as $$Layout } from '../chunks/Layout_CTh15CE6.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro = createAstro("https://example.com");

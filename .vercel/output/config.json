@@ -20,14 +20,6 @@
 			"dest": "_render"
 		},
 		{
-			"src": "^\\/api\\/auth\\/signin\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/api\\/auth\\/signout\\/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^\\/blogs\\/edit\\/([^/]+?)\\/?$",
 			"dest": "_render"
 		},
@@ -53,10 +45,6 @@
 		},
 		{
 			"src": "^\\/gallery\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/login\\/?$",
 			"dest": "_render"
 		},
 		{

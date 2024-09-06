@@ -1,8 +1,8 @@
 /* empty css                                     */
 import { a as createComponent, r as renderTemplate, b as renderComponent } from '../../chunks/astro/server_CuGB0Mp9.mjs';
 import 'kleur/colors';
-import { $ as $$BlogEditor } from '../../chunks/BlogEditor_B7eNFUyS.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_CFnpzb-_.mjs';
+import { $ as $$BlogEditor } from '../../chunks/BlogEditor_DjFd-D7U.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_CTh15CE6.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$New = createComponent(async ($$result, $$props, $$slots) => {
