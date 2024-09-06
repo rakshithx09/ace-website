@@ -12,6 +12,8 @@ interface Props {
 }
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+
+
 ---
 
 <!doctype html>
@@ -21,6 +23,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <ViewTransitions />
   </head>
   <body>
+    <div id="tsparticles" transition:persist=""></div>
     <MouseTrailer/>
     <Header />
     <slot />
@@ -45,10 +48,77 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 
   body {
     color: white;
+    
   }
 
   .content-container {
     padding-left: max(1rem, 8vw);
     padding-right: max(1rem, 8vw);
   }
+  #tsparticles {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensures particles are behind other content */
+    }
 </style>
+<script>
+  //@ts-ignore
+  import { tsParticles } from 'https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/+esm';
+  //@ts-ignore
+  import { loadAll } from 'https://cdn.jsdelivr.net/npm/@tsparticles/all@3.1.0/+esm';
+
+  document.addEventListener('astro:page-load', () => {
+    
+    
+    async function loadParticles(options: any) {
+      await loadAll(tsParticles);
+      
+      await tsParticles.load({ id: 'tsparticles', options });
+    }
+    
+    const fireflyConfig = {
+      particles: {
+        number: {
+          value: 50, // More particles for fireflies
+        },
+        color: {
+          value: "#FFFF", // Yellow, like fireflies
+        },
+        shape: {
+          type: "circle",
+        },
+        opacity: {
+          value: 0.8, // Slightly transparent
+          random: true, // Flickering effect
+          anim: {
+            enable: true,
+            speed: 1, // Speed of opacity changes
+            opacity_min: 0.4,
+            sync: false,
+          },
+        },
+        size: {
+          value: 3,
+          random: true,
+        },
+        move: {
+          enable: true,
+          speed: 1, // Slow movement
+          direction: "none",
+          random: true,
+          out_mode: "bounce", // Bounce off edges like fireflies
+        },
+      },
+  background: {
+    color: "#13151a", // Dark background
+  },
+};
+
+loadParticles(fireflyConfig);
+})
+
+
+</script>
