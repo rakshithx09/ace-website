@@ -1,4 +1,87 @@
 ---
+import Layout from '@layouts/Layout.astro';
+const blogs = [
+  {
+    id: 1,
+    title: 'How to build a blog with Astro',
+    content: 'This is a blog content',
+    description:
+      'This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description.',
+    createdAt: '2022-01-01',
+    authorName: 'Bhavya Nayak',
+    image: 'https://images.pexels.com/photos/1000366/pexels-photo-1000366.jpeg',
+    authorId: 1,
+  },
+  {
+    id: 2,
+    title: 'How to build a blog with Astro',
+    content: 'This is a blog content',
+    description:
+      'This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description.',
+    createdAt: '2022-01-01',
+    authorName: 'John Doe',
+    image: 'https://images.pexels.com/photos/1000366/pexels-photo-1000366.jpeg',
+    authorId: 1,
+  },
+  {
+    id: 3,
+    title: 'How to build a blog with Astro',
+    content: 'This is a blog content',
+    description:
+      'This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description.',
+    createdAt: '2022-01-01',
+    authorName: 'John Doe',
+    image: 'https://images.pexels.com/photos/1000366/pexels-photo-1000366.jpeg',
+    authorId: 1,
+  },
+  {
+    id: 4,
+    title: 'How to use GitHub Copilot for coding',
+    content: 'This is a blog content',
+    description:
+      'This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description.',
+    createdAt: '2022-01-01',
+    authorName: 'Jane Smith',
+    image: 'https://images.pexels.com/photos/1000366/pexels-photo-1000366.jpeg',
+    authorId: 2,
+  },
+  {
+    id: 5,
+    title: 'Introduction to React Hooks',
+    content: 'This is a blog content',
+    description:
+      'This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description.',
+    createdAt: '2022-01-01',
+    authorName: 'Jane Smith',
+    image: 'https://images.pexels.com/photos/1000366/pexels-photo-1000366.jpeg',
+    authorId: 2,
+  },
+  {
+    id: 6,
+    title: 'Getting Started with Node.js',
+    content: 'This is a blog content',
+    description:
+      'This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description.',
+    createdAt: '2022-01-01',
+    authorName: 'Jane Smith',
+    image: 'https://images.pexels.com/photos/1000366/pexels-photo-1000366.jpeg',
+    authorId: 2,
+  },
+  {
+    id: 7,
+    title: 'Mastering CSS Grid Layout',
+    content: 'This is a blog content',
+    description:
+      'This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description.',
+    createdAt: '2022-01-01',
+    authorName: 'Jane Smith',
+    image: 'https://images.pexels.com/photos/1000366/pexels-photo-1000366.jpeg',
+    authorId: 2,
+  },
+];
+---
+
+<!-- ---
 import { db } from "@lib/db";
 import Layout from "../../layouts/Layout.astro";
 import { blogTable } from "@lib/db/schema";
@@ -39,4 +122,113 @@ const blogs = await db
             ))
         }
     </div>
+</Layout> -->
+<Layout title="blogs">
+  <main class="content-container">
+    <div class="mt-32 flex flex-col gap-8 items-center">
+      <h2 class="fade-up uppercase text-6xl text-center">ACE BLOGS</h2>
+      <h1 class="text-sm fade-up">Sharing Ideas, Projects, and Tech Stories!</h1>
+
+      <div class="flex flex-col justify-center items-center gap-11 md:gap-16 max-w-screen-xl">
+        {
+          blogs.map((blog) => (
+            <a href={`blogs/${blog.id}`} class="blog-item flex flex-col justify-center items-center gap-4">
+              <div class="bg-slate-900 flex justify-center flex-col w-full md:w-7/12 shadow-xl rounded-3xl item">
+                <img
+                  id={blog.id.toString()}
+                  src={blog.image}
+                  alt={blog.title}
+                  class="object-cover rounded-t-3xl aspect-[16/5] w-full h-auto"
+                />
+                <div class="flex items-end gap-4 p-4 md:p-6 md:gap-8">
+                  <div class="max-sm:hidden">
+                    <div class="w-12 h-12 bg-gray-200 shrink-0 flex justify-center rounded-xl items-start">
+                      <img
+                        src="/images/pic.jpg"
+                        class="object-cover w-full h-full rounded-xl"
+                        width="600"
+                        height="600"
+                      />
+                    </div>
+                  </div>
+                  <div class="max-w-full flex items-start justify-center flex-col">
+                    <p class="mb-4 text-2xl">{blog.title}</p>
+
+                    <div class="flex items-start space-y-2 flex-col text-justify">
+                      <p class=" text-sm md:text-base">{blog.description}</p>
+                      <div class="flex flex-wrap">
+                        <a class=" text-link mr-2 text-xs" href="">
+                          {blog.authorName}
+                        </a>
+                        <time class=" text-xs">{blog.createdAt}</time>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </main>
 </Layout>
+<style>
+  body {
+    overflow-x: hidden;
+  }
+  #tsparticles {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensures particles are behind other content */
+  }
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .fade-up {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideUp 1s ease-out forwards;
+  }
+  #tsparticles canvas {
+    filter: blur(7px);
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/src/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const cards = gsap.utils.toArray('.item') as HTMLDivElement[];
+
+  cards.forEach((element, i) => {
+    gsap.set(element, { opacity: 0 });
+    gsap.from(element, {
+      y: 200,
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 100%',
+      },
+    });
+  });
+
+  ScrollTrigger.batch('.item', {
+    onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, stagger: { each: 0.15, grid: [1, 3] }, overwrite: true }),
+    onLeaveBack: (batch) => gsap.set(batch, { opacity: 0, y: 100, overwrite: true }),
+  });
+
+  ScrollTrigger.addEventListener('refreshInit', () => {
+    gsap.set('.item', { y: 0 });
+  });
+</script>
