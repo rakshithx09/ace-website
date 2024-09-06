@@ -1,38 +1,20 @@
 ---
 import DeveloperCard from '@components/DeveloperCard.astro';
 import Layout from '@layouts/Layout.astro';
+import { instagramLink } from '@lib/constants';
 
 const developers = [
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Len', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Karthik', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Len', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Karthik', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Len', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Karthik', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Len', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Karthik', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Len', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Karthik', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Len', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Karthik', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
-  { name: 'Ameesha', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
+  
+
+  
 ];
 ---
 
@@ -50,6 +32,7 @@ const developers = [
                 description={dev.description}
                 linkedinLink={dev.linkedinLink}
                 githubLink={dev.githubLink}
+                instagramLink={dev.instagramLink}
               />
             </div>
           ))
@@ -86,6 +69,9 @@ const developers = [
     transform: translateY(50px);
     animation: slideUp 1s ease-out forwards;
   }
+  #tsparticles canvas {
+  filter: blur(7px);
+}
 </style>
 
 <script>
@@ -126,43 +112,44 @@ const developers = [
     await tsParticles.load({ id: 'tsparticles', options });
   }
 
-  const configs = {
-    particles: {
-      number: {
-        value: 20,
-      },
-      color: {
-        value: '#ffffff',
-      },
-      links: {
+  const fireflyConfig = {
+  particles: {
+    number: {
+      value: 50, // More particles for fireflies
+    },
+    color: {
+      value: "#FFFF", // Yellow, like fireflies
+    },
+    shape: {
+      type: "circle",
+    },
+    opacity: {
+      value: 0.8, // Slightly transparent
+      random: true, // Flickering effect
+      anim: {
         enable: true,
-        distance: 200,
-      },
-      shape: {
-        type: 'circle',
-      },
-      opacity: {
-        value: 1,
-      },
-      size: {
-        value: {
-          min: 4,
-          max: 6,
-        },
-      },
-      move: {
-        enable: true,
-        speed: 2,
+        speed: 1, // Speed of opacity changes
+        opacity_min: 0.4,
+        sync: false,
       },
     },
-    background: {
-      color: '#000000',
+    size: {
+      value: 3,
+      random: true,
     },
-    poisson: {
+    move: {
       enable: true,
+      speed: 1, // Slow movement
+      direction: "none",
+      random: true,
+      out_mode: "bounce", // Bounce off edges like fireflies
     },
-  };
+  },
+  background: {
+    color: "#13151a", // Dark background
+  },
+};
 
-  loadParticles(configs);
+loadParticles(fireflyConfig);
 </script>
 
