@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "769dfacb-0d5c-4530-a957-90e2c2902251",
+  "id": "f9afe3c4-f35d-4f2b-a170-64141cd88e67",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "blog": {
@@ -95,8 +95,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "recipe_id": {
-          "name": "recipe_id",
+        "blog_id": {
+          "name": "blog_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
@@ -141,12 +141,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "Comment_recipe_id_blog_id_fk": {
-          "name": "Comment_recipe_id_blog_id_fk",
+        "Comment_blog_id_blog_id_fk": {
+          "name": "Comment_blog_id_blog_id_fk",
           "tableFrom": "Comment",
           "tableTo": "blog",
           "columnsFrom": [
-            "recipe_id"
+            "blog_id"
           ],
           "columnsTo": [
             "id"
@@ -156,12 +156,12 @@
         }
       },
       "compositePrimaryKeys": {
-        "Comment_user_id_recipe_id_pk": {
+        "Comment_user_id_blog_id_pk": {
           "columns": [
             "user_id",
-            "recipe_id"
+            "blog_id"
           ],
-          "name": "Comment_user_id_recipe_id_pk"
+          "name": "Comment_user_id_blog_id_pk"
         }
       },
       "uniqueConstraints": {}
@@ -318,10 +318,10 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "organiser_user_id_event_id_fk": {
-          "name": "organiser_user_id_event_id_fk",
+        "organiser_user_id_user_id_fk": {
+          "name": "organiser_user_id_user_id_fk",
           "tableFrom": "organiser",
-          "tableTo": "event",
+          "tableTo": "user",
           "columnsFrom": [
             "user_id"
           ],
@@ -421,6 +421,13 @@
           "notNull": true,
           "autoincrement": true
         },
+        "uid": {
+          "name": "uid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "name": {
           "name": "name",
           "type": "text",
@@ -442,8 +449,23 @@
           "notNull": false,
           "autoincrement": false
         },
+        "year": {
+          "name": "year",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "password": {
           "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "NULL"
+        },
+        "role": {
+          "name": "role",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -457,6 +479,13 @@
           "notNull": true,
           "autoincrement": false,
           "default": "CURRENT_TIMESTAMP"
+        },
+        "photo": {
+          "name": "photo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
       "indexes": {
@@ -470,6 +499,64 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "user_team": {
+      "name": "user_team",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "team_id": {
+          "name": "team_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_team_user_id_user_id_fk": {
+          "name": "user_team_user_id_user_id_fk",
+          "tableFrom": "user_team",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "user_team_team_id_team_id_fk": {
+          "name": "user_team_team_id_team_id_fk",
+          "tableFrom": "user_team",
+          "tableTo": "team",
+          "columnsFrom": [
+            "team_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "user_team_user_id_team_id_pk": {
+          "columns": [
+            "user_id",
+            "team_id"
+          ],
+          "name": "user_team_user_id_team_id_pk"
+        }
+      },
       "uniqueConstraints": {}
     },
     "View": {

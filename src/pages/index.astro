@@ -2,6 +2,7 @@
 import Gallery from '@components/landing/Gallery.astro';
 import Layout from '../layouts/Layout.astro';
 import Events from '@components/landing/Events.astro';
+const {name} = Astro.locals; 
 ---
 
 <Layout title="ACE">
@@ -9,7 +10,7 @@ import Events from '@components/landing/Events.astro';
     <!-- hero -->
     <section class="hero content-container flex flex-col items-center justify-between py-6 md:py-16">
       <div></div>
-
+{name && <div class="mt-5 content-container text-white">Hello {name}!</div>}
       <div class="text-center space-y-4">
         <h3 class="uppercase text-6xl">Association of computer Engineers</h3>
         <p class="m-auto max-w-80 text-sm">

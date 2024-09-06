@@ -12,13 +12,13 @@ CREATE TABLE `blog` (
 --> statement-breakpoint
 CREATE TABLE `Comment` (
 	`user_id` integer NOT NULL,
-	`recipe_id` integer NOT NULL,
+	`blog_id` integer NOT NULL,
 	`content` text NOT NULL,
 	`updated_at` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`created_at` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
-	PRIMARY KEY(`user_id`, `recipe_id`),
+	PRIMARY KEY(`user_id`, `blog_id`),
 	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action,
-	FOREIGN KEY (`recipe_id`) REFERENCES `blog`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`blog_id`) REFERENCES `blog`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `event` (
@@ -44,7 +44,7 @@ CREATE TABLE `organiser` (
 	`user_id` integer NOT NULL,
 	PRIMARY KEY(`event_id`, `user_id`),
 	FOREIGN KEY (`event_id`) REFERENCES `event`(`id`) ON UPDATE no action ON DELETE no action,
-	FOREIGN KEY (`user_id`) REFERENCES `event`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `team` (
@@ -59,11 +59,23 @@ CREATE TABLE `team` (
 --> statement-breakpoint
 CREATE TABLE `user` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`uid` text NOT NULL,
 	`name` text NOT NULL,
 	`email` text NOT NULL,
 	`image` text,
-	`password` text DEFAULT 'MEMBER' NOT NULL,
-	`joined_on` text DEFAULT CURRENT_TIMESTAMP NOT NULL
+	`year` integer,
+	`password` text DEFAULT NULL,
+	`role` text DEFAULT 'MEMBER' NOT NULL,
+	`joined_on` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	`photo` text
+);
+--> statement-breakpoint
+CREATE TABLE `user_team` (
+	`user_id` integer NOT NULL,
+	`team_id` integer NOT NULL,
+	PRIMARY KEY(`user_id`, `team_id`),
+	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`team_id`) REFERENCES `team`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `View` (
