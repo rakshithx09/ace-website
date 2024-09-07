@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import "../styles/global.css"; // Assuming this contains your global styles
+import "../styles/global.css"; 
 
 const teamMembers2023 = [
   { name: 'James Henry', position: 'HOD', image: '/images/sample.png' },
@@ -22,7 +22,7 @@ const faculty = [
 
 <Layout>
   <section class="tabs">
-    <!-- Tabs Navigation -->
+  
     <input type="radio" id="tab1" name="tab-control" checked>
     <input type="radio" id="tab2" name="tab-control">
     <input type="radio" id="tab3" name="tab-control">
@@ -33,7 +33,7 @@ const faculty = [
       <li><label for="tab3" role="button"><span>Faculty</span></label></li>
     </ul>
     <div class="content">
-      <!-- 2023-24 Team Members Section -->
+      
       <section>
         <div class="card_Container">
           {teamMembers2023.map((member) => (
@@ -51,7 +51,7 @@ const faculty = [
         </div>
       </section>
 
-      <!-- 2024-25 Team Members Section -->
+      
       <section>
         <div class="card_Container">
           {teamMembers2024.map((member) => (
@@ -69,7 +69,7 @@ const faculty = [
         </div>
       </section>
 
-      <!-- Faculty Section -->
+      
       <section>
         <div class="card_Container">
           {faculty.map((member) => (
@@ -97,7 +97,7 @@ const faculty = [
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 100px; /* Adjust as needed */
+  margin-top: 100px;
 }
 
 .tabs input[type="radio"] {
