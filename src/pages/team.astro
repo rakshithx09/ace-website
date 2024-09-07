@@ -1,252 +1,242 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import { Tabs } from 'astro-tabs';
-import "../styles/global.css"
-const teamMembers = [
+import Layout from '../layouts/Layout.astro';
+import "../styles/global.css"; 
+
+const teamMembers2023 = [
   { name: 'James Henry', position: 'HOD', image: '/images/sample.png' },
-  { name: 'John Doe', position: 'Assistant Proefssor', image: '/images/sample.png' },
-  { name: 'Mykel Smith', position: 'Pofessor', image: '/images/sample.png' },
+  { name: 'John Doe', position: 'Assistant Professor', image: '/images/sample.png' }
+];
+
+const teamMembers2024 = [
+  { name: 'Mykel Smith', position: 'Professor', image: '/images/sample.png' },
   { name: 'Angel Smith', position: 'Professor II', image: '/images/sample.png' }
 ];
-const lecturers = [
-  { name: 'James ', position: 'HOD', image: '/images/sample.png' },
-  { name: 'hari', position: 'Assistant Proefssor', image: '/images/sample.png' },
-  { name: 'Vatsala', position: 'Pofessor', image: '/images/sample.png' },
-  { name: 'srinivasa', position: 'Professor II', image: '/images/sample.png' }
+
+const faculty = [
+  { name: 'James', position: 'HOD', image: '/images/sample.png' },
+  { name: 'Hari', position: 'Assistant Professor', image: '/images/sample.png' },
+  { name: 'Vatsala', position: 'Professor', image: '/images/sample.png' },
+  { name: 'Srinivasa', position: 'Professor II', image: '/images/sample.png' }
 ];
 ---
 
 <Layout>
-
-    <section class="teams">
-    <Tabs class="pass-your-own-class" class:list={['pass-your-class-list']}>
-            <Fragment slot="tab-1" class = "tab tab1">2023-24</Fragment>
-            <Fragment slot="tab-2" class = "tab tab2">2024-25</Fragment>
-            <Fragment slot="tab-3" class = "tab tab3">Faculties</Fragment>
-       
-        <Fragment slot="panel-1">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <h2 class="fade-up uppercase text-6xl text-center">Faculty</h2>
-    <div class="wrapper">
-        <main class="content-container">
-            <div class="mt-32 flex flex-col gap-8 items-center">
-                <div class="card_Container">
-                    {teamMembers.map((member) => (
-                        <div class="card">
-                            <div class="imbBx">
-                                <img src={member.image} alt={member.name} />
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>{member.name} <br /><span>{member.position}</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+  <section class="tabs">
+  
+    <input type="radio" id="tab1" name="tab-control" checked>
+    <input type="radio" id="tab2" name="tab-control">
+    <input type="radio" id="tab3" name="tab-control">
+    <input type="radio" id="tab4" name="tab-control">
+    <ul>
+      <li><label for="tab1" role="button"><span>2023-24</span></label></li>
+      <li><label for="tab2" role="button"><span>2024-25</span></label></li>
+      <li><label for="tab3" role="button"><span>Faculty</span></label></li>
+    </ul>
+    <div class="content">
+      
+      <section>
+        <div class="card_Container">
+          {teamMembers2023.map((member) => (
+            <div class="card">
+              <div class="imbBx">
+                <img src={member.image} alt={member.name} />
+              </div>
+              <div class="content">
+                <div class="contentBx">
+                  <h3>{member.name} <br /><span>{member.position}</span></h3>
                 </div>
+              </div>
             </div>
-        </main>
-    </div>
-        </Fragment>
+          ))}
+        </div>
+      </section>
 
-        <Fragment slot="panel-2">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <h2 class="fade-up uppercase text-6xl text-center">Faculty</h2>
-    <div class="wrapper">
-        <main class="content-container">
-            <div class="mt-32 flex flex-col gap-8 items-center">
-                <div class="card_Container">
-                    {lecturers.map((member) => (
-                        <div class="card">
-                            <div class="imbBx">
-                                <img src={member.image} alt={member.name} />
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>{member.name} <br /><span>{member.position}</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+      
+      <section>
+        <div class="card_Container">
+          {teamMembers2024.map((member) => (
+            <div class="card">
+              <div class="imbBx">
+                <img src={member.image} alt={member.name} />
+              </div>
+              <div class="content">
+                <div class="contentBx">
+                  <h3>{member.name} <br /><span>{member.position}</span></h3>
                 </div>
+              </div>
             </div>
-        </main>
-    </div>
-          </Fragment>
+          ))}
+        </div>
+      </section>
 
-          <Fragment slot="panel-3">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <h2 class="fade-up uppercase text-6xl text-center">Faculty</h2>
-    <div class="wrapper">
-        <main class="content-container">
-            <div class="mt-32 flex flex-col gap-8 items-center">
-                <div class="card_Container">
-                    {teamMembers.map((member) => (
-                        <div class="card">
-                            <div class="imbBx">
-                                <img src={member.image} alt={member.name} />
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>{member.name} <br /><span>{member.position} </span></h3>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+      
+      <section>
+        <div class="card_Container">
+          {faculty.map((member) => (
+            <div class="card">
+              <div class="imbBx">
+                <img src={member.image} alt={member.name} />
+              </div>
+              <div class="content">
+                <div class="contentBx">
+                  <h3>{member.name} <br /><span>{member.position}</span></h3>
                 </div>
+              </div>
             </div>
-        </main>
+          ))}
+        </div>
+      </section>
     </div>
-        </Tabs>
-    </section>
-
+  </section>
 </Layout>
+
 <style>
-   
+/* Tabs Navigation */
+.tabs {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 100px;
+}
 
-   
-    
-    .pass-your-own-class{
-        height: 100vh;
-    }
-    .wrapper .title {
-        text-align: center;
-    }
+.tabs input[type="radio"] {
+  display: none;
+}
 
-    .wrapper .card_Container {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        margin: 40px 0;
-    }
+.tabs ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  gap: 10%;
+}
 
-    .card_Container .card {
-        position: relative;
-        width: 300px;
-        height: 400px;
-        margin: 20px;
-        overflow: hidden;
-        box-shadow: 0 30px 30px -20px rgba(0, 0, 0, 1),
-                    inset 0 0 0 1000px rgba(22, 160, 133, .6);
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.tabs ul li {
+  flex: auto;
+}
 
-    .card .imbBx, .imbBx img {
-        width: 100%;
-        height: 100%;
-    }
+.tabs ul li label {
+  display: block;
+  padding: 10px 15px;
+  text-align: center;
+  cursor: pointer;
+  color: rgb(233, 227, 227);
+  font-size: 24px;
+  background: none;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, font-weight 0.3s;
+}
 
-    .card .content {
-        position: absolute;
-        bottom: -160px;
-        width: 100%;
-        height: 160px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        backdrop-filter: blur(15px);
-        box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        transition: bottom 0.5s;
-        transition-delay: 0.65s;
-    }
+.tabs ul li label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #00f, rgb(46, 144, 235));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-out;
+  border-radius: 0 0 5px 5px;
+}
 
-    .card:hover .content {
-        bottom: 0;
-        transition-delay: 0s;
-    }
+.tabs ul li label:hover::after,
+.tabs input[type="radio"]:checked + ul label::after {
+  transform: scaleX(1);
+}
 
-    .content .contentBx h3 {
-        text-transform: uppercase;
-        color: #fff;
-        letter-spacing: 2px;
-        font-weight: 500;
-        font-size: 18px;
-        text-align: center;
-        margin: 20px 0 15px;
-        line-height: 1.1em;
-        transition: 0.5s;
-        transition-delay: 0.6s;
-        opacity: 0;
-        transform: translateY(-20px);
-    }
+.tabs input[type="radio"]:checked + ul label {
+  color: #edf0f3;
+  font-weight: bold;
+}
 
-    .card:hover .content .contentBx h3 {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.tabs .content section {
+  display: none;
+  padding: 10px;
+}
 
-    .content .contentBx h3 span {
-        font-size: 12px;
-        font-weight: 300;
-        text-transform: initial;
-    }
+.tabs input[type="radio"]#tab1:checked ~ .content section:nth-of-type(1),
+.tabs input[type="radio"]#tab2:checked ~ .content section:nth-of-type(2),
+.tabs input[type="radio"]#tab3:checked ~ .content section:nth-of-type(3) {
+  display: block;
+}
 
-    .content .sci {
-        position: relative;
-        bottom: 10px;
-        display: flex;
-    }
 
-    .content .sci li {
-        list-style: none;
-        margin: 0 10px;
-        transform: translateY(40px);
-        transition: 0.5s;
-        opacity: 0;
-        transition-delay: calc(0.2s * var(--i));
-    }
 
-    .card:hover .content .sci li {
-        transform: translateY(0);
-        opacity: 1;
-    }
 
-    .content .sci li a {
-        color: #fff;
-        font-size: 24px;
-    }
-    
-    .fade-up {
-    opacity: 0;
-    transform: translateY(50px);
-    animation: slideUp 1s ease-out forwards;
-  }
+/* Card styles */
+.card_Container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 30px -20px rgba(0, 0, 0, 1), inset 0 0 0 1000px rgba(22, 160, 133, .6);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .imbBx, .imbBx img {
+  width: 100%;
+  height: 100%;
+}
+
+.card .content {
+  position: absolute;
+  bottom: -160px;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  transition: bottom 0.5s;
+  transition-delay: 0.65s;
+}
+
+.card:hover .content {
+  bottom: 0;
+  transition-delay: 0s;
+}
+
+.content .contentBx h3 {
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  margin: 20px 0 15px;
+  line-height: 1.1em;
+  transition: 0.5s;
+  transition-delay: 0.6s;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.card:hover .content .contentBx h3 {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 </style>
-
-
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <h2 class="fade-up uppercase text-6xl text-center">Faculty</h2>
-    <div class="wrapper">
-        <main class="content-container">
-            <div class="mt-32 flex flex-col gap-8 items-center">
-                <div class="card_Container">
-                    {teamMembers.map((member) => (
-                        <div class="card">
-                            <div class="imbBx">
-                                <img src={member.image} alt={member.name} />
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>{member.name} <br /><span>{member.position}</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </main>
-    </div> -->
