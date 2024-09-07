@@ -1,0 +1,20 @@
+---
+import EventCard from "@components/EventCard.astro";
+import Layout from "@layouts/Layout.astro";
+import sampleImage from '../../public/images/pexels-mareklevak-2265488.jpg';
+import sampleImage2 from '../../public/images/sample.png';
+---
+
+<Layout>
+    <section class="hero content-container min-h-screen mt-20 flex flex-col items-center ">
+        <h1 class="text-4xl">Events</h1>
+
+        <div class="grid grid-cols-3 gap-10">
+             <EventCard image={sampleImage}/>
+        <EventCard image={sampleImage2}/>
+         <EventCard image={sampleImage}/>
+        <EventCard image={sampleImage2}/>
+        </div>
+       
+    </section>
+</Layout>
