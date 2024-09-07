@@ -2,8 +2,9 @@ import { relations, sql } from 'drizzle-orm';
 import { text, integer, sqliteTable, primaryKey } from 'drizzle-orm/sqlite-core';
 
 export const userTable = sqliteTable('user', {
-  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
-  uid: text('uid').notNull(),
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
   image: text('image'),
@@ -12,11 +13,36 @@ export const userTable = sqliteTable('user', {
   role: text('role', { enum: ['CORE', 'MEMBER', 'ADMIN'] })
     .default('MEMBER')
     .notNull(),
+  emailVerified: integer('emailVerified', { mode: 'timestamp_ms' }),
   joinedOn: text('joined_on')
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
   photo: text('photo'),
 });
+
+export const accounts = sqliteTable(
+  'account',
+  {
+    userId: text('userId')
+      .notNull()
+      .references(() => userTable.id, { onDelete: 'cascade' }),
+    type: text('type').notNull(),
+    provider: text('provider').notNull(),
+    providerAccountId: text('providerAccountId').notNull(),
+    refresh_token: text('refresh_token'),
+    access_token: text('access_token'),
+    expires_at: integer('expires_at'),
+    token_type: text('token_type'),
+    scope: text('scope'),
+    id_token: text('id_token'),
+    session_state: text('session_state'),
+  },
+  (account) => ({
+    compoundKey: primaryKey({
+      columns: [account.provider, account.providerAccountId],
+    }),
+  }),
+);
 
 export const eventTable = sqliteTable('event', {
   id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
@@ -60,7 +86,7 @@ export const teamTable = sqliteTable('team', {
 export const userTeamTable = sqliteTable(
   'user_team',
   {
-    userId: integer('user_id')
+    userId: text('user_id')
       .references(() => userTable.id)
       .notNull(),
     teamId: integer('team_id')
@@ -80,7 +106,7 @@ export const organiserTable = sqliteTable(
     eventId: integer('event_id')
       .references(() => eventTable.id)
       .notNull(),
-    userId: integer('user_id')
+    userId: text('user_id')
       .references(() => userTable.id)
       .notNull(),
   },
@@ -100,7 +126,7 @@ export const winnerTable = sqliteTable(
     eventId: integer('event_id')
       .references(() => eventTable.id)
       .notNull(),
-    teamId: integer('user_id')
+    teamId: integer('team_id')
       .references(() => teamTable.id)
       .notNull(),
   },
@@ -120,7 +146,7 @@ export const blogTable = sqliteTable('blog', {
   state: text('state', { enum: ['DRAFT', 'PUBLISHED'] })
     .default('DRAFT')
     .notNull(),
-  authorId: integer('author_id')
+  authorId: text('author_id')
     .references(() => userTable.id)
     .notNull(),
   createdAt: text('created_at')
@@ -131,7 +157,7 @@ export const blogTable = sqliteTable('blog', {
 export const commentsTable = sqliteTable(
   'Comment',
   {
-    userId: integer('user_id')
+    userId: text('user_id')
       .references(() => userTable.id)
       .notNull(),
     blogId: integer('blog_id')
@@ -155,7 +181,7 @@ export const commentsTable = sqliteTable(
 export const viewTable = sqliteTable(
   'View',
   {
-    userId: integer('user_id')
+    userId: text('user_id')
       .references(() => userTable.id)
       .notNull(),
     blogId: integer('blog_id')
@@ -172,12 +198,20 @@ export const viewTable = sqliteTable(
 
 //RELATIONS
 
-export const userTableRelations = relations(userTable, ({ many }) => ({
+export const userTableRelations = relations(userTable, ({ one, many }) => ({
   teams: many(userTeamTable),
   blogs: many(blogTable),
   views: many(viewTable),
   comments: many(commentsTable),
   organiser: many(organiserTable),
+  accounts: one(accounts),
+}));
+
+export const accountsTableRelations = relations(accounts, ({ one }) => ({
+  user: one(userTable, {
+    fields: [accounts.userId],
+    references: [userTable.id],
+  }),
 }));
 
 export const eventTableRelations = relations(eventTable, ({ many }) => ({

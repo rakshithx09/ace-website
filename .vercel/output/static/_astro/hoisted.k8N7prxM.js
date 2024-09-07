@@ -1,1 +1,0 @@
-import{a}from"./_astro_actions.B2SrBwE2.js";import"./hoisted.DYnvkOtc.js";const e=document.querySelector("#blog-form");e.addEventListener("submit",async t=>{t.preventDefault();const o=new FormData(t.target);await a.editBlog(o)});

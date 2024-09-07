@@ -9,7 +9,7 @@ export const createBlog = defineAction({
     title: z.string(),
     description: z.string(),
     content: z.string(),
-    authorId: z.number(),
+    authorId: z.string(),
   }),
   handler: async ({ title, description, content, authorId }) => {
     const blogs = await db
