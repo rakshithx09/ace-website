@@ -11,7 +11,7 @@ import Events from '@components/landing/Events.astro';
       <div></div>
 
       <div class="text-center space-y-4">
-        <h3 class="uppercase text-6xl">Association of computer Engineers</h3>
+        <h3 class="title-glow uppercase text-6xl">Association of computer Engineers</h3>
         <p class="m-auto max-w-80 text-sm">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. i animi dicta. Vitae id ullam minus, nesciunt alias
           tempore soluta.
@@ -19,8 +19,8 @@ import Events from '@components/landing/Events.astro';
       </div>
 
       <div class="w-full flex items-center justify-between">
-        <span>Blogs</span>
-        <span>Get in touch</span>
+        <a href="/blogs" class="animated-btn"><span>Blogs</span></a>
+        <a href="/contact" class="animated-btn"><span>Get in touch</span></a>
       </div>
     </section>
 
@@ -40,10 +40,80 @@ import Events from '@components/landing/Events.astro';
 </Layout>
 
 <style>
-  .hero span {
+  /* Hero buttons with continuous border animation */
+  .animated-btn {
+    position: relative;
+    display: inline-block;
+  }
+
+  .animated-btn span {
     @apply border-2 border-blue-500 p-4 px-8 w-48 text-center;
     border-radius: 9999px;
+    position: relative;
+    z-index: 1;
+    display: block;
   }
+
+  /* Circular border animation */
+  @keyframes rotate-border {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 400;
+    }
+  }
+
+  .animated-btn::before {
+    content: "";
+    position: absolute;
+    top: -4px; 
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    
+    background-size: 200%;
+    animation: rotate-border 4s linear infinite;
+    z-index: 0;
+    padding: 2px;
+  }
+
+  /* Glow effect on hover */
+  .animated-btn:hover::before {
+    box-shadow: 0 0 10px rgba(0, 180, 216, 0.8), 0 0 20px rgba(0, 180, 216, 0.5);
+  }
+
+  .animated-btn span:hover {
+    color: #00b4d8;
+  }
+
+  /* Title glow animation */
+  .title-glow {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+  }
+
+  .title-glow::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 180, 216, 0.4), transparent);
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  
+
+  
 </style>
 
 <style is:global>

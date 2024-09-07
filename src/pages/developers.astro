@@ -20,7 +20,7 @@ const developers = [
 
 <Layout>
     <main class="content-container">
-      <div id="tsparticles"></div>
+      
       <div class="mt-32 flex flex-col gap-8 items-center">
         <h2 class="fade-up uppercase text-6xl text-center">Meet the dev team</h2>
         <div class="flex flex-wrap gap-32 justify-center">
@@ -101,55 +101,9 @@ const developers = [
     gsap.set('.item', { y: 0 });
   });
 
-  //@ts-ignore
-  import { tsParticles } from '../components/out/particle.js';
-  //@ts-ignore
-  import { loadAll } from '../components/out/load.js';
+  
 
-  async function loadParticles(options: any) {
-    await loadAll(tsParticles);
 
-    await tsParticles.load({ id: 'tsparticles', options });
-  }
-
-  const fireflyConfig = {
-  particles: {
-    number: {
-      value: 50, // More particles for fireflies
-    },
-    color: {
-      value: "#FFFF", // Yellow, like fireflies
-    },
-    shape: {
-      type: "circle",
-    },
-    opacity: {
-      value: 0.8, // Slightly transparent
-      random: true, // Flickering effect
-      anim: {
-        enable: true,
-        speed: 1, // Speed of opacity changes
-        opacity_min: 0.4,
-        sync: false,
-      },
-    },
-    size: {
-      value: 3,
-      random: true,
-    },
-    move: {
-      enable: true,
-      speed: 1, // Slow movement
-      direction: "none",
-      random: true,
-      out_mode: "bounce", // Bounce off edges like fireflies
-    },
-  },
-  background: {
-    color: "#13151a", // Dark background
-  },
-};
-
-loadParticles(fireflyConfig);
+  
 </script>
 
