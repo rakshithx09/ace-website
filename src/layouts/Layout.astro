@@ -25,9 +25,6 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <MouseTrailer />
     <Header />
     <slot />
-    <br />
-    <br />
-    <br />
     <Footer />
   </body>
 </html>
@@ -61,6 +58,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     z-index: -1; /* Ensures particles are behind other content */
   }
 </style>
+
 <script>
   //@ts-ignore
   import { tsParticles } from 'https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/+esm';
