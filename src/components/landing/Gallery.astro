@@ -48,23 +48,21 @@
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-
-  let targets = gsap.utils.toArray('.image-row');
-  gsap.fromTo(
-    targets,
-    {
-      x: (i) => (i % 2 ? '20%' : '-80%'),
-    },
-    {
-      x: (i) => (i % 2 ? '-80%' : '20%'),
-      scrollTrigger: {
-        scrub: 0.3,
-        trigger: '.gallery-parent',
-        toggleActions: 'play none none none',
+  document.addEventListener('astro:page-load', () => {
+    let targets = gsap.utils.toArray('.image-row');
+    gsap.fromTo(
+      targets,
+      {
+        x: (i) => (i % 2 ? '20%' : '-80%'),
       },
-    }
-  );
+      {
+        x: (i) => (i % 2 ? '-80%' : '20%'),
+        scrollTrigger: {
+          scrub: 0.3,
+          trigger: '.gallery-parent',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  });
 </script>
