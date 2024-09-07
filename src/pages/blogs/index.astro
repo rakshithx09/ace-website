@@ -1,42 +1,36 @@
 ---
-import { db } from "@lib/db";
-import Layout from "../../layouts/Layout.astro";
-import { blogTable } from "@lib/db/schema";
+import { db } from '@lib/db';
+import Layout from '../../layouts/Layout.astro';
+import { blogTable } from '@lib/db/schema';
 
 const blogs = await db
-    .select({
-        id: blogTable.id,
-        image: blogTable.image,
-        title: blogTable.title,
-        description: blogTable.description,
-    })
-    .from(blogTable);
+  .select({
+    id: blogTable.id,
+    image: blogTable.image,
+    title: blogTable.title,
+    description: blogTable.description,
+  })
+  .from(blogTable);
 ---
 
 <Layout title="blogs">
+  <main class="mt-20 content-container">
     <h1 class="text-4xl font-bold mb-8">Blogs</h1>
 
     <div class="flex gap-4">
-        {
-            blogs.map((blog) => (
-                <a
-                    href={`blogs/${blog.id}`}
-                    class="w-72 shadow-xl"
-                >
-                    <figure>
-                        <img
-                            id={blog.id.toString()}
-                            src={blog.image}
-                            alt={blog.title}
-                            class="aspect-[4/3] object-cover"
-                        />
-                    </figure>
-                    <div class="">
-                        <h2 class="">{blog.title}</h2>
-                        <p>{blog.description}</p>
-                    </div>
-                </a>
-            ))
-        }
+      {
+        blogs.map((blog) => (
+          <a href={`blogs/${blog.id}`} class="w-72 shadow-xl">
+            <figure>
+              <img id={blog.id.toString()} src={blog.image} alt={blog.title} class="aspect-[4/3] object-cover" />
+            </figure>
+            <div class="">
+              <h2 class="">{blog.title}</h2>
+              <p>{blog.description}</p>
+            </div>
+          </a>
+        ))
+      }
     </div>
+  </main>
 </Layout>

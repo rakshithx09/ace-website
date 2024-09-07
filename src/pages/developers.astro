@@ -102,9 +102,9 @@ const developers = [
   });
 
   //@ts-ignore
-  import { tsParticles } from 'https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/+esm';
+  import { tsParticles } from '../components/out/particle.js';
   //@ts-ignore
-  import { loadAll } from 'https://cdn.jsdelivr.net/npm/@tsparticles/all@3.1.0/+esm';
+  import { loadAll } from '../components/out/load.js';
 
   async function loadParticles(options: any) {
     await loadAll(tsParticles);

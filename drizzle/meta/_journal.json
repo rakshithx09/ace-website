@@ -8,6 +8,13 @@
       "when": 1724845731253,
       "tag": "0000_blushing_sunspot",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1725606034151,
+      "tag": "0001_cute_lady_mastermind",
+      "breakpoints": true
     }
   ]
 }

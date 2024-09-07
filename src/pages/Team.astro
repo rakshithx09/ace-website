@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import { Tabs } from 'astro-tabs';
+import "../styles/global.css"
 const teamMembers = [
   { name: 'James Henry', position: 'HOD', image: '/images/sample.png' },
   { name: 'John Doe', position: 'Assistant Proefssor', image: '/images/sample.png' },
@@ -17,12 +18,12 @@ const lecturers = [
 
 <Layout>
 
-
+    <section class="teams">
     <Tabs class="pass-your-own-class" class:list={['pass-your-class-list']}>
-        <Fragment slot="tab-1" class = "tab1">2023-24</Fragment>
-        <Fragment slot="tab-2" class="tab2">2024-25</Fragment>
-        <Fragment slot="tab-3" class = "tab3">Faculties</Fragment>
-
+            <Fragment slot="tab-1" class = "tab tab1">2023-24</Fragment>
+            <Fragment slot="tab-2" class = "tab tab2">2024-25</Fragment>
+            <Fragment slot="tab-3" class = "tab tab3">Faculties</Fragment>
+       
         <Fragment slot="panel-1">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
@@ -47,9 +48,9 @@ const lecturers = [
             </div>
         </main>
     </div>
-          </Fragment>
+        </Fragment>
 
-          <Fragment slot="panel-2">
+        <Fragment slot="panel-2">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <h2 class="fade-up uppercase text-6xl text-center">Faculty</h2>
@@ -90,7 +91,7 @@ const lecturers = [
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>{member.name} <br /><span>{member.position}</span></h3>
+                                    <h3>{member.name} <br /><span>{member.position} </span></h3>
                                 </div>
                             </div>
                         </div>
@@ -100,6 +101,7 @@ const lecturers = [
         </main>
     </div>
         </Tabs>
+    </section>
 
 </Layout>
 <style>
@@ -111,15 +113,16 @@ const lecturers = [
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
     }
-    
-    .pass-your-own-class{
-        display: flex;
-        justify-content: center;
-        align-items: first baseline;
-        height: 100vh;
-        
-    }
+   .teams {
+    margin-top: 10rem;
+   }
+   .tab-bar {
+    background: white;
+   }
 
+    .pass-your-own-class{
+        height: 100vh;
+    }
     .wrapper .title {
         text-align: center;
     }
