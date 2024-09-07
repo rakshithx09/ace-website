@@ -24,7 +24,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
       if (userRole) {
         locals.role = userRole;
-        console.log('userRole', locals.role);
       }
     }
 

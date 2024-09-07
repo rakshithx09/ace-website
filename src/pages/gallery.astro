@@ -1,9 +1,76 @@
 ---
 import GalleryHero from '@components/GalleryHero.astro';
 import Layout from '@layouts/Layout.astro';
+
+const images = [
+  {
+    url: '/images/varshithitis.jpeg',
+    description: 'dnsjd',
+  },
+  {
+    url: '/images/sample.png',
+    description: 'dnsjd',
+  },
+  {
+    url: '/images/pexels-flodahm-699459.jpg',
+    description: 'dnsjd',
+  },
+  {
+    url: '/images/pexels-tirachard-kumtanom-112571-601170.jpg',
+    description: 'dnsjd',
+  },
+  {
+    url: '/images/pexels-djordje-petrovic-590080-2102416.jpg',
+    description: 'dnsjd',
+  },
+  {
+    url: '/images/pexels-flodahm-699459.jpg',
+    description: 'dnsjd',
+  },
+  {
+    url: '/images/pexels-lilartsy-1925536.jpg',
+    description: 'dnsjd',
+  },
+  {
+    url: '/images/pexels-flodahm-699459.jpg',
+    description: 'dnsjd',
+  },
+];
 ---
 
 <Layout>
-  <GalleryHero />
-  <main></main>
+  <main>
+    <GalleryHero />
+    <section class="content-container w-full h-fit columns-1 sm:columns-2 md:columns-3 lg:columns-4">
+      {images.map((image) => <img src={image.url} alt={image.description} class="gallery-image mb-4 rounded-lg" />)}
+    </section>
+  </main>
 </Layout>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/src/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const images = gsap.utils.toArray('.gallery-image') as HTMLImageElement[];
+
+  images.forEach((element) => {
+    gsap.fromTo(
+      element,
+      {
+        filter: 'blur(10px)',
+        scale: 0.95,
+      },
+      {
+        duration: 0.5,
+        scale: 1.0,
+        filter: 'blur(0px)',
+        scrollTrigger: {
+          start: 'top 70%',
+          trigger: element,
+          toggleActions: 'restart none none none',
+        },
+      }
+    );
+  });
+</script>
