@@ -21,7 +21,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <ViewTransitions />
   </head>
   <body>
-    <div id="tsparticles" transition:persist=""></div>
+  
     <MouseTrailer />
     <Header />
     <slot />
@@ -49,132 +49,11 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     padding-left: max(1rem, 8vw);
     padding-right: max(1rem, 8vw);
   }
-  #tsparticles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1; /* Ensures particles are behind other content */
-  }
+  
 </style>
 
 <script>
-  //@ts-ignore
-  import { tsParticles } from 'https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/+esm';
-  //@ts-ignore
-  import { loadAll } from 'https://cdn.jsdelivr.net/npm/@tsparticles/all@3.1.0/+esm';
-
-  document.addEventListener('astro:page-load', () => {
-    async function loadParticles(options: any) {
-      await loadAll(tsParticles);
-      await tsParticles.load({ id: 'tsparticles', options });
-    }
-
-    const particlesConfig = {
-      particles: {
-        number: {
-          value: 200,
-          density: {
-            enable: true,
-            value_area: 789.1476416322727,
-          },
-        },
-        color: {
-          value: '#ffffff',
-        },
-        shape: {
-          type: 'circle',
-          stroke: {
-            width: 0,
-            color: '#000000',
-          },
-          polygon: {
-            nb_sides: 6,
-          },
-        },
-        opacity: {
-          value: 0.48927153781200905,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 0.2,
-            opacity_min: 0,
-            sync: false,
-          },
-        },
-        size: {
-          value: 2,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 6,
-            size_min: 0,
-            sync: false,
-          },
-        },
-        move: {
-          enable: true,
-          speed: 0.6,
-          direction: 'none',
-          random: true,
-          straight: false,
-          out_mode: 'out',
-          bounce: true,
-          attract: {
-            enable: false,
-            rotateX: 600,
-            rotateY: 1200,
-          },
-        },
-      },
-      interactivity: {
-        detect_on: 'canvas',
-        events: {
-          onhover: {
-            enable: true,
-            mode: 'push',
-          },
-          onclick: {
-            enable: true,
-            mode: 'push',
-          },
-          resize: true,
-        },
-        modes: {
-          grab: {
-            distance: 400,
-            line_linked: {
-              opacity: 1,
-            },
-          },
-          bubble: {
-            distance: 83.91608391608392,
-            size: 1,
-            duration: 3,
-            opacity: 1,
-            speed: 3,
-          },
-          repulse: {
-            distance: 200,
-            duration: 0.4,
-          },
-          push: {
-            particles_nb: 4,
-          },
-          remove: {
-            particles_nb: 2,
-          },
-        },
-      },
-      retina_detect: true,
-      background: {
-        color: '#13151a', // Dark background
-      },
-    };
-
-    loadParticles(particlesConfig);
-  });
+  
 
   import gsap from 'gsap';
   import ScrollTrigger from 'gsap/ScrollTrigger';

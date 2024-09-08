@@ -3,25 +3,31 @@ import { githubLink, instagramLink, linkedinLink } from '@lib/constants';
 import { Icon } from 'astro-icon/components';
 ---
 
-<footer class="tracking-wider bg-[#000621] pt-8 rounded-t-3xl text-center md:text-left">
+<footer class="tracking-wider   pt-8 rounded-t-3xl text-center md:text-left mt-20">
+<hr class="mx-20 my-2">
   <div
-    class="content-container mx-auto flex flex-col flex-wrap md:flex-row md:flex-nowrap md:items-center lg:items-start"
+    class="content-container  flex flex-col flex-wrap md:flex-row md:flex-nowrap md:items-center lg:items-start py-2 mx-14"
   >
+  
     <div class="m-6 flex flex-grow md:mt-0 md:pl-20">
       <div class="w-full p-4 px-4 md:w-1/2 lg:w-1/2">
         <div class="flex flex-col gap-4 text-white">
+     
           <div class="flex gap-4">
             <Icon name="mdi:github" size={30} />
             <a href={githubLink} target="_blank">GitHub</a>
           </div>
+          
           <div class="flex gap-4">
             <Icon name="mdi:linkedin" size={30} />
             <a href={linkedinLink} target="_blank">LinkedIn</a>
           </div>
+          
           <div class="flex gap-4">
             <Icon name="mdi:instagram" size={30} />
             <a href={instagramLink} target="_blank">Instagram</a>
           </div>
+          
         </div>
       </div>
     </div>
@@ -30,12 +36,70 @@ import { Icon } from 'astro-icon/components';
       <p class="pt-4">ACE</p>
       <p>Department of CSE</p>
       <p class="">NMAM Institute of Technology, Nitte, Karkala Taluk, Udupi-574110 Karnataka, India</p>
-      <a href="mailto:ace@nmamit.in" target="_blank">ace@nmamit.in</a>
+      
     </div>
+ 
   </div>
-  <div class="text-white">
-    <p class="px-5 py-5 text-center">
+  <hr class="mx-20 my-2">
+  <div class="text-white flex justify-between my-4 mx-14">
+    <p class="px-5 py-5 text-start">
       ACE © {new Date().getFullYear()}
     </p>
+    <img src="images/top-button.svg" alt="" width="28px" height="28px" class="mr-5">
+  </div>
+  <div class="torch relative h-[300px] overflow-hidden mr-4">
+    <div class="w-full h-[925px] absolute overflow-hidden object-center -top-[295px] -bottom-[400px] ">
+    <img src="images/acefooter.png" alt="" class="w-[100%] h-full object-center  torch-img">
+  </div>
+  <div class="light"></div>
   </div>
 </footer>
+
+<script>
+  var torchDiv = document.querySelector('.torch') as HTMLElement | null;
+  var lightDiv = document.querySelector('.light') as HTMLElement | null;
+  var torchImg = document.querySelector('.torch-img') as HTMLElement | null;
+
+  if (torchDiv && lightDiv && torchImg) {
+  
+    torchDiv.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = torchDiv!.getBoundingClientRect();
+      lightDiv!.style.setProperty('--x', e.clientX - rect.left + 'px');
+      lightDiv!.style.setProperty('--y', e.clientY - rect.top + 'px');
+   
+      lightDiv!.style.background = `radial-gradient(circle at var(--x) var(--y), transparent 10%, rgba(19, 21, 26, 0.95) 20%)`;
+      torchImg!.style.opacity = '1'; 
+    });
+
+   
+    torchDiv.addEventListener('mouseleave', () => {
+      torchImg!.style.opacity = '0.2';  
+      lightDiv!.style.background = 'none';  
+    });
+
+    torchDiv.addEventListener('mouseenter', () => {
+      torchImg!.style.opacity = '1'; 
+    });
+  }
+</script>
+
+
+<style>
+  .torch-img {
+  opacity: 0.2; 
+}
+
+.light {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: none; 
+}
+
+.torch:hover {
+  cursor: url('images/torch.png'), auto;
+}
+</style>
