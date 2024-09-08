@@ -11,8 +11,5 @@ export default defineConfig({
   site: 'https://example.com',
   integrations: [tailwind(), react(), icon({}), auth()],
   output: 'server',
-  adapter: vercel(),
-  experimental:{
-    actions:true
-  }
+  adapter: vercel()
 });
