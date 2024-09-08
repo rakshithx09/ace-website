@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import BlogCard from '@components/BlogCard.astro';
 const blogs = [
   {
     id: 1,
@@ -125,50 +126,40 @@ const blogs = await db
 </Layout> -->
 <Layout title="blogs">
   <main class="content-container">
-    <div class="mt-32 flex flex-col gap-8 items-center">
-      <h2 class="fade-up uppercase text-6xl text-center">ACE BLOGS</h2>
-      <h1 class="text-sm fade-up">Sharing Ideas, Projects, and Tech Stories!</h1>
+    <div class="mt-16 flex flex-col items-center">
+      <section class="lg:py-18 relative py-12 sm:py-14 md:py-16 xl:py-20 flex flex-col items-center gap-6 text-center">
+        <h1 class="fade-up uppercase text-6xl mx-auto max-w-screen-lg">ACE BLOGS</h1>
+        <p class="fade-up text-gray-200">Where creativity meets curiosity!</p>
+      </section>
 
-      <div class="flex flex-col justify-center items-center gap-11 md:gap-16 max-w-screen-xl">
-        {
-          blogs.map((blog) => (
-            <a href={`blogs/${blog.id}`} class="blog-item flex flex-col justify-center items-center gap-4">
-              <div class="bg-slate-900 flex justify-center flex-col w-full md:w-7/12 shadow-xl rounded-3xl item">
-                <img
-                  id={blog.id.toString()}
-                  src={blog.image}
-                  alt={blog.title}
-                  class="object-cover rounded-t-3xl aspect-[16/5] w-full h-auto"
-                />
-                <div class="flex items-end gap-4 p-4 md:p-6 md:gap-8">
-                  <div class="max-sm:hidden">
-                    <div class="w-12 h-12 bg-gray-200 shrink-0 flex justify-center rounded-xl items-start">
-                      <img
-                        src="/images/pic.jpg"
-                        class="object-cover w-full h-full rounded-xl"
-                        width="600"
-                        height="600"
-                      />
-                    </div>
-                  </div>
-                  <div class="max-w-full flex items-start justify-center flex-col">
-                    <p class="mb-4 text-2xl">{blog.title}</p>
+      <div class="flex lg:flex-row flex-col-reverse gap-11">
+        <aside class="lg:w-56 xl:max-w-sm">
+          <div class="p-2 lg:p-4 xl:p-8 lg:border-b border-gray-700">
+            <h2 class="text-2xl">Popular posts</h2>
+            <ul class="mt-4 space-y-4 text-gray-400">
+              <li>
+                <a href="/blog/images/"> Better Images in Astro </a>
+              </li><li>
+                <a href="/blog/images/"> 2023 Web Framework Performance Report </a>
+              </li><li>
+                <a href="/blog/hybrid-rendering/"> Unlock New Possibilities with Hybrid Rendering </a>
+              </li><li>
+                <a href="/blog/netlify-official-deployment-partner/"> Netlify: Our Official Deployment Partner </a>
+              </li>
+            </ul>
+          </div>
+          <div class="lg:border-b border-gray-700 p-2 lg:p-4 xl:p-8">
+            <h2 class="text-2xl">Want to contribute?</h2>
+            <p class="mb-6 mt-4 text-gray-400">
+              Start writing your blogs here and be a part of the vibrant ACE community!
+            </p>
+            <a href="/blogs/edit"> Write a blog ✍🏻</a>
+          </div>
+        </aside>
 
-                    <div class="flex items-start space-y-2 flex-col text-justify">
-                      <p class=" text-sm md:text-base">{blog.description}</p>
-                      <div class="flex flex-wrap">
-                        <a class=" text-link mr-2 text-xs" href="">
-                          {blog.authorName}
-                        </a>
-                        <time class=" text-xs">{blog.createdAt}</time>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          ))
-        }
+        <div class="flex flex-col justify-center items-center gap-11 md:gap-16 max-w-xl pt-6 lg:pt-8 xl:pt-10">
+          {blogs.map((blog) => <BlogCard blog={blog} />)}
+        </div>
       </div>
     </div>
   </main>
