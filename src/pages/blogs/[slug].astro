@@ -1,140 +1,164 @@
-<!-- ---
-import Layout from "@layouts/Layout.astro"
-import { db } from "@lib/db"
-import { and, count, eq } from "drizzle-orm";
-import { blogTable, userTable,commentsTable, viewTable } from "@lib/db/schema";
-import { Icon } from 'astro-icon/components'
+---
+import Layout from '@layouts/Layout.astro';
+// import { Icon } from 'astro-icon/components';
 
-const { slug } = Astro.params;
-
-const user = {
-    id:1
+const blog = {
+  id: 1,
+  title: 'How to build a blog with Astro and how to continue building it',
+  content:
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis hic repellat animi! Ad vitae iusto quibusdam deserunt unde vero nulla laborum. Non minima mollitia minus quo eveniet sapiente vitae sit. Dolorem aspernatur recusandae ipsa praesentium ratione expedita exercitationem nemo non, eum, quidem libero alias voluptatibus cum,cupiditate dolores reiciendis asperiores laborum ad voluptatem. Quisquam, quidem. Quisquam, quidem. Quisquam, quidem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis hic repellat animi! Ad vitae iusto quibusdam deserunt unde vero nulla laborum. Non minima mollitia minus quo eveniet sapiente vitae sit. Dolorem aspernaturrecusandae ipsa praesentium ratione expedita exercitationem nemo non, eum, quidem libero alias voluptatibus cum,upiditate dolores reiciendis asperiores laborum ad voluptas optio! Cumque, sint nostrum ipsam nam asperiores illumdebitis ut consequatur repudiandae unde accusamus quod voluptas exercitationem veritatis cupiditate voluptatesharum, quam quaerat culpa, provident assumenda. Blanditiis laboriosam doloribus voluptates aliquam explicabo minuspossimus eos soluta ex unde asperiores, quae quasi iusto suscipit est?',
+  description:
+    'This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description. This is a blog description.',
+  createdAt: '2022-01-01',
+  authorName: 'Bhavya Nayak',
+  image: 'https://images.pexels.com/photos/1000366/pexels-photo-1000366.jpeg',
+  authorId: 1,
 };
 
-const blogs = await db
-    .select({
-        id: blogTable.id,
-        title: blogTable.title,
-        content: blogTable.content,
-        description: blogTable.description,
-        createdAt: blogTable.createdAt,
-        authorName: userTable.name,
-        image: blogTable.image,
-        authorId: blogTable.authorId,
-    })
-    .from(blogTable)
-    .innerJoin(userTable, eq(blogTable.authorId, userTable.id))
-    .where(eq(blogTable.id, Number(slug)));
+let liked: boolean | null = false;
+let viewStats = {
+  viewCount: 1,
+  likeCount: 0,
+};
 
-if (!blogs.length) return Astro.redirect("/blogs");
+let comments: any[] = [
+  {
+    content: 'This is a comment',
+    name: 'John Doe',
+    userId: 1,
+    createdAt: '2022-01-01',
+  },
+  {
+    content: 'This is a comment',
+    name: 'Jane Smith',
+    userId: 2,
+    createdAt: '2022-01-01',
+  },
+];
+// import Layout from '@layouts/Layout.astro';
+// import { db } from '@lib/db';
+// import { and, count, eq } from 'drizzle-orm';
+// import { blogTable, userTable, commentsTable, viewTable } from '@lib/db/schema';
+// import { Icon } from 'astro-icon/components';
 
-const blog = blogs[0];
+// const { slug } = Astro.params;
 
-//comments
-const comments = await db
-    .select({
-        content: commentsTable.content,
-        name: userTable.name,
-        userId: userTable.id,
-        createdAt: commentsTable.createdAt,
-    })
-    .from(commentsTable)
-    .innerJoin(userTable, eq(commentsTable.userId, userTable.id))
-    .where(eq(commentsTable.blogId, blog.id));
+// const user = {
+//   id: 1,
+// };
 
-//create view if not exits
-db.insert(viewTable).values({
-    userId: user.id,
-    blogId: blog.id,
-}).onConflictDoNothing()
+// const blogs = await db
+//   .select({
+//     id: blogTable.id,
+//     title: blogTable.title,
+//     content: blogTable.content,
+//     description: blogTable.description,
+//     createdAt: blogTable.createdAt,
+//     authorName: userTable.name,
+//     image: blogTable.image,
+//     authorId: blogTable.authorId,
+//   })
+//   .from(blogTable)
+//   .innerJoin(userTable, eq(blogTable.authorId, userTable.id))
+//   .where(eq(blogTable.id, Number(slug)));
 
-/************ fetch likes  *******************/
-const likesResult = await db.select({
-    liked:viewTable.liked
-}).from(viewTable).where(and(eq(viewTable.userId, user.id), eq(viewTable.blogId, blog.id)));
+// if (!blogs.length) return Astro.redirect('/blogs');
 
+// const blog = blogs[0];
 
-let liked:boolean|null = false;
-if (likesResult.length) {
-    liked = likesResult[0].liked
-}
-/**********************************************/
+// //comments
+// const comments = await db
+//   .select({
+//     content: commentsTable.content,
+//     name: userTable.name,
+//     userId: userTable.id,
+//     createdAt: commentsTable.createdAt,
+//   })
+//   .from(commentsTable)
+//   .innerJoin(userTable, eq(commentsTable.userId, userTable.id))
+//   .where(eq(commentsTable.blogId, blog.id));
 
-/************ fetch views count  **************/
-let viewsResult = await db
-    .select(
-    {viewCount: count(),
-    likeCount: count(viewTable.liked)
-}
-    )
-    .from(viewTable)
-    .where(eq(viewTable.blogId, blog.id));
+// //create view if not exits
+// db.insert(viewTable)
+//   .values({
+//     userId: user.id,
+//     blogId: blog.id,
+//   })
+//   .onConflictDoNothing();
 
-let viewStats;
-if(viewsResult.length){
-    viewStats = viewsResult[0]
-}
+// /************ fetch likes  *******************/
+// const likesResult = await db
+//   .select({
+//     liked: viewTable.liked,
+//   })
+//   .from(viewTable)
+//   .where(and(eq(viewTable.userId, user.id), eq(viewTable.blogId, blog.id)));
+
+// let liked: boolean | null = false;
+// if (likesResult.length) {
+//   liked = likesResult[0].liked;
+// }
+// /**********************************************/
+
+// /************ fetch views count  **************/
+// let viewsResult = await db
+//   .select({ viewCount: count(), likeCount: count(viewTable.liked) })
+//   .from(viewTable)
+//   .where(eq(viewTable.blogId, blog.id));
+
+// let viewStats;
+// if (viewsResult.length) {
+//   viewStats = viewsResult[0];
+// }
 /**********************************************/
 ---
 
 <Layout>
-    <main class="flex flex-col gap-8 max-w-[800px] mx-auto">
-        <h1 class="text-4xl font-bold">{blog.title}</h1>
-        <img
-            src={blog.image}
-            alt={blog.title}
-            class="w-full aspect-video mx-auto max-w-[800px] object-cover rounded-box"
-        />
+  <main class="content-container">
+    <div class="mt-32 flex flex-col gap-8 max-w-xl mx-auto">
+      <h1 class="text-4xl font-bold">{blog.title}</h1>
+      <img
+        src={blog.image}
+        alt={blog.title}
+        class="w-full aspect-video mx-auto max-w-[800px] object-cover rounded-box"
+      />
 
-        <a class="flex gap-6 align-middle" href={`/profile/${blog.authorId}`}>
-            <div class="avatar">
-                <div
-                    class="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
-                >
-                    <img
-                        src={blog.image}
-                        alt={blog.authorName}
-                    />
-                </div>
-            </div>
-            <span>By {blog.authorName}</span>
-            <span
-                >on {
-                    new Intl.DateTimeFormat("en-US", {
-                        dateStyle: "full",
-                        timeStyle: "short",
-                    }).format(new Date(blog.createdAt))
-                }</span
-            >
-        </a>
-
-        <hr />
-
-        <div>
-            <form method="post" class="flex gap-4 items-center">
-                <button name="vote">
-                    {
-                        liked ? (
-                            <Icon name="ph:heart-fill" size={30} />
-                        ) : (
-                            <Icon name="ph:heart-duotone" size={30} />
-                        )
-                    }
-                </button>
-            </form>
-            <span>{viewStats?.likeCount??0} likes</span>
-            <span>{viewStats?.viewCount??1} views</span>
+      <a class="flex gap-6 align-middle" href={`/profile/${blog.authorId}`}>
+        <div class="avatar">
+          <div class="w-12 h-12 bg-gray-200 shrink-0 flex ring-primary rounded-full">
+            <img src="/images/pic.jpg" class="object-cover w-full h-full rounded-xl" width="600" height="600" />
+          </div>
         </div>
+        <span>By {blog.authorName}</span>
+        <span
+          >on {
+            new Intl.DateTimeFormat('en-US', {
+              dateStyle: 'full',
+              timeStyle: 'short',
+            }).format(new Date(blog.createdAt))
+          }</span
+        >
+      </a>
 
+      <hr />
+
+      <div>
+        <form method="post" class="flex gap-4 items-center">
+          <button name="vote"> liked </button>
+        </form>
+        <span>{viewStats?.likeCount ?? 0} likes</span>
+        <span>{viewStats?.viewCount ?? 1} views</span>
+      </div>
+
+      <hr />
+
+      <article class="prose min-w-full text-balance" set:html={blog.content} />
+
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold">Comments</h2>
         <hr />
 
-        <article 
-        class="prose min-w-full" 
-        set:html={blog.content} />
-
-        <div class="space-y-4">
-            <h2 class="text-2xl font-semibold">Comments</h2>
-            <hr /> --><!-- {
+        <!-- {
                 <form method="post">
                         <input type="text" name="comment" />
                         <p class="mb-2">Post a comment</p>
@@ -143,36 +167,29 @@ if(viewsResult.length){
                             <button class="btn btn-primary">Post</button>
                         </div>
                 </form>
-            } --><!-- {
-                comments.map((comment) => (
-                    <div class="">
-                        <a
-                            class=""
-                            href={`profile/${comment.userId}`}
-                        >
-                            <div class="w-10 rounded-full">
-                                <img
-                                    alt={comment.name}
-                                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                                />
-                            </div>
-                        </a>
-                        <div class="">
-                            <a href={`/profile/${comment.userId}`}>
-                                {comment.name}
-                            </a>
-                            <time class="text-xs">
-                                {new Intl.DateTimeFormat("en-US", {
-                                    dateStyle: "short",
-                                    timeStyle: "short",
-                                }).format(new Date(comment.createdAt))}
-                            </time>
-                        </div>
-                        <div class="">{comment.content}</div>
-                    </div>
-                ))
-            }
-        </div>
-
-    </main>
-</Layout> -->
+            } -->
+        {
+          comments.map((comment) => (
+            <div class="">
+              <a class="" href={`profile/${comment.userId}`}>
+                <div class="w-10 rounded-full">
+                  <img alt={comment.name} src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                </div>
+              </a>
+              <div class="">
+                <a href={`/profile/${comment.userId}`}>{comment.name}</a>
+                <time class="text-xs">
+                  {new Intl.DateTimeFormat('en-US', {
+                    dateStyle: 'short',
+                    timeStyle: 'short',
+                  }).format(new Date(comment.createdAt))}
+                </time>
+              </div>
+              <div class="">{comment.content}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>
