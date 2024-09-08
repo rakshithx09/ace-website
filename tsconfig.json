@@ -6,7 +6,8 @@
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
       "@actions/*": ["actions/*"],
-      "@lib/*": ["lib/*"]
+      "@lib/*": ["lib/*"],
+      "@styles/*": ["styles/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"

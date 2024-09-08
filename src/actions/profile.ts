@@ -1,7 +1,7 @@
 import { db } from '@lib/db';
 import { userTable } from '@lib/db/schema';
 import { ActionError, defineAction } from 'astro:actions';
-import { z } from 'zod'; // Add this line to import 'z' from the 'zod' module
+import { z } from 'astro:content';
 
 export const editProfile = defineAction({
   accept: 'form',
@@ -12,11 +12,11 @@ export const editProfile = defineAction({
   }),
   handler: async ({ name, email, image }) => {
     const userProfile = await db
-      .insert(userTable)
-      .values({
-        name,
-        email,
-        image,
+      .update(userTable)
+      .set({
+        name: name,
+        email: email,
+        image: image,
       })
       .returning({ id: userTable.id });
 

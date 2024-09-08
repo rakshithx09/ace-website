@@ -1,7 +1,7 @@
 import { db } from '@lib/db';
 import { blogTable } from '@lib/db/schema';
+import { z } from 'astro/zod';
 import { ActionError, defineAction } from 'astro:actions';
-import { z } from 'zod';
 
 export const createBlog = defineAction({
   accept: 'form',
@@ -9,7 +9,7 @@ export const createBlog = defineAction({
     title: z.string(),
     description: z.string(),
     content: z.string(),
-    authorId: z.number(),
+    authorId: z.string(),
   }),
   handler: async ({ title, description, content, authorId }) => {
     const blogs = await db

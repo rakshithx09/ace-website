@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "769dfacb-0d5c-4530-a957-90e2c2902251",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "12ea96fa-126c-4b74-bcb1-4a7e07ffa786",
+  "prevId": "769dfacb-0d5c-4530-a957-90e2c2902251",
   "tables": {
     "blog": {
       "name": "blog",
@@ -442,8 +442,8 @@
           "notNull": false,
           "autoincrement": false
         },
-        "password": {
-          "name": "password",
+        "role": {
+          "name": "role",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -494,8 +494,7 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false,
-          "default": false
+          "autoincrement": false
         }
       },
       "indexes": {},
