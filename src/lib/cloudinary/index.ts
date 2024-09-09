@@ -1,8 +1,9 @@
-import { v2 as cloudinary, type UploadApiOptions } from "cloudinary";
+import { v2 as cloudinary, type UploadApiOptions, type ResourceApiResponse } from "cloudinary";
 
 type UploadResponse = {
     secure_url: string;
 };
+
 
 cloudinary.config({
     cloud_name: import.meta.env.CLOUDINARY_CLOUD_NAME,
@@ -40,3 +41,7 @@ function svgStringToUint8Array(svgString: string) {
     const uint8Array = new Uint8Array(buffer);
     return uint8Array;
 }
+
+export async function getImages(asset_folder:string){
+    return cloudinary.api.resources_by_asset_folder(asset_folder)
+} 
