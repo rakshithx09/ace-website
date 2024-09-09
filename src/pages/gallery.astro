@@ -35,7 +35,7 @@ const images = [
     url: '/images/pexels-flodahm-699459.jpg',
     description: 'dnsjd',
   },
-   {
+  {
     url: '/images/varshithitis.jpeg',
     description: 'dnsjd',
   },
@@ -43,11 +43,10 @@ const images = [
     url: '/images/sample.png',
     description: 'dnsjd',
   },
-   {
+  {
     url: '/images/varshithitis.jpeg',
     description: 'dnsjd',
   },
-   
 ];
 ---
 
@@ -61,29 +60,27 @@ const images = [
 </Layout>
 
 <script>
-  import gsap from 'gsap';
-  import ScrollTrigger from 'gsap/src/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
+  document.addEventListener('astro:page-load', () => {
+    const images = gsap.utils.toArray('.gallery-image') as HTMLImageElement[];
 
-  const images = gsap.utils.toArray('.gallery-image') as HTMLImageElement[];
-
-  images.forEach((element) => {
-    gsap.fromTo(
-      element,
-      {
-        filter: 'blur(10px)',
-        scale: 0.95,
-      },
-      {
-        duration: 0.5,
-        scale: 1.0,
-        filter: 'blur(0px)',
-        scrollTrigger: {
-          start: 'top 70%',
-          trigger: element,
-          toggleActions: 'restart none none none',
+    images.forEach((element) => {
+      gsap.fromTo(
+        element,
+        {
+          filter: 'blur(10px)',
+          scale: 0.95,
         },
-      }
-    );
+        {
+          duration: 0.5,
+          scale: 1.0,
+          filter: 'blur(0px)',
+          scrollTrigger: {
+            start: 'top 70%',
+            trigger: element,
+            toggleActions: 'restart none none none',
+          },
+        }
+      );
+    });
   });
 </script>
