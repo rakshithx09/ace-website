@@ -1,8 +1,7 @@
 ---
 import EventCard from '@components/EventCard.astro';
 import Layout from '@layouts/Layout.astro';
-import sampleImage from '../../public/images/pexels-mareklevak-2265488.jpg';
-import sampleImage2 from '../../public/images/sample.png';
+
 ---
 
 <Layout>
@@ -10,10 +9,10 @@ import sampleImage2 from '../../public/images/sample.png';
     <h1 class="text-4xl mb-8">Events</h1>
 
     <div class="grid  sm:gap-y-8 grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-32 lg:grid-cols-3">
-      <EventCard image={sampleImage} />
-      <EventCard image={sampleImage2} />
-      <EventCard image={sampleImage} />
-      <EventCard image={sampleImage2} />
+      <EventCard />
+      <EventCard  />
+      <EventCard  />
+      <EventCard />
     </div>
   </section>
 </Layout>
