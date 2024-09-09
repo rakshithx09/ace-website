@@ -1,18 +1,21 @@
 <header class="header">
-  <a href="/"><img src="/images/logo.png" alt="ACE" class="h-16 w-auto z-10" /></a>
-  
-  <input type="checkbox" id="check">
-  <label for="check" class="menu">
-    <img src="images/icons8-menu.svg" alt="menu" id="open-menu" class="h-8 w-6 "/>
-  <img src="images/close.svg" alt="close" id="close-menu" class="h-8 w-6"/>
-  </label>
-  <nav class="navbar">
-    <a href="/" class="nav-link">home</a>
-    <a href="/events" class="nav-link">events</a>
-    <a href="/team" class="nav-link">Team</a>
-    <a href="/gallery" class="nav-link">gallery</a>
-    <a href="/developers" class="nav-link">dev-team</a>
-  </nav>
+  <div class="content-container">
+
+    <a href="/"><img src="/images/logo.png" alt="ACE" class="h-16 w-auto z-10" /></a>
+    
+    <input type="checkbox" id="check">
+    <label for="check" class="menu">
+      <img src="images/icons8-menu.svg" alt="menu" id="open-menu" class="h-8 w-6 "/>
+      <img src="images/close.svg" alt="close" id="close-menu" class="h-8 w-6"/>
+    </label>
+    <nav class="navbar">
+      <a href="/" class="nav-link">home</a>
+      <a href="/events" class="nav-link">events</a>
+      <a href="/team" class="nav-link">Team</a>
+      <a href="/gallery" class="nav-link">gallery</a>
+      <a href="/developers" class="nav-link">dev-team</a>
+    </nav>
+  </div>
 </header>
 
 <style>
@@ -22,10 +25,14 @@
     left: 0;
     width: 100%;
     z-index: 50;
-    padding: 0.5rem 1rem 0.5rem 0.5rem;
+   
+  }
+  .content-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    
   }
 
   .header::before{
@@ -35,7 +42,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(60, 60, 60, 0.3);
+    background-color: #1418234f;
     backdrop-filter: blur(50px);
     z-index: -1;
   }
