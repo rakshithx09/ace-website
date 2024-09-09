@@ -1,32 +1,27 @@
 ---
 import DeveloperCard from '@components/DeveloperCard.astro';
 import Layout from '@layouts/Layout.astro';
-import { instagramLink } from '@lib/constants';
 
 const developers = [
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
-  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#' ,instagramLink:'#'},
-  
-
-  
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#', instagramLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#', instagramLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#', instagramLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#', instagramLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#', instagramLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#', instagramLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#', instagramLink: '#' },
+  { name: 'Varshith', description: 'All Hail Varshith', linkedinLink: '#', githubLink: '#', instagramLink: '#' },
 ];
 ---
 
 <Layout>
-    <main class="content-container">
-      
-      <div class="mt-32 flex flex-col gap-8 items-center">
-        <h2 class="fade-up uppercase text-6xl text-center">Meet the dev team</h2>
-        <div class="flex flex-wrap gap-32 justify-center">
-          {
-            developers.map((dev, index) => (
-              <div class="item">
+  <main class="content-container">
+    <div class="mt-32 flex flex-col gap-8 items-center">
+      <h2 class="fade-up uppercase text-6xl text-center">Meet the dev team</h2>
+      <div class="flex flex-wrap gap-32 justify-center">
+        {
+          developers.map((dev) => (
+            <div class="developer-card">
               <DeveloperCard
                 name={dev.name}
                 description={dev.description}
@@ -44,8 +39,8 @@ const developers = [
 
 <style>
   body {
-      overflow-x: hidden;
-    }
+    overflow-x: hidden;
+  }
   #tsparticles {
     position: absolute;
     width: 100vw;
@@ -53,7 +48,7 @@ const developers = [
     top: 0;
     left: 0;
     z-index: -1; /* Ensures particles are behind other content */
-    }
+  }
   @keyframes slideUp {
     from {
       opacity: 0;
@@ -70,40 +65,36 @@ const developers = [
     animation: slideUp 1s ease-out forwards;
   }
   #tsparticles canvas {
-  filter: blur(7px);
-}
+    filter: blur(7px);
+  }
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import ScrollTrigger from 'gsap/src/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
+  document.addEventListener('astro:page-load', () => {
+    const cards = gsap.utils.toArray('.developer-card') as HTMLDivElement[];
 
-  const cards = gsap.utils.toArray('.item') as HTMLDivElement[];
+    window.gsapContext.add(() => {
+      cards.forEach((element, i) => {
+        gsap.set(element, { opacity: 0 });
+        gsap.from(element, {
+          y: 200,
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 100%',
+          },
+        });
+      });
 
-  cards.forEach((element, i) => {
-    gsap.set(element, { opacity: 0 });
-    gsap.from(element, {
-      y: 200,
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 100%',
-      },
+      ScrollTrigger.batch('.developer-card', {
+        onEnter: (batch) =>
+          gsap.to(batch, { opacity: 1, y: 0, stagger: { each: 0.15, grid: [1, 3] }, overwrite: true }),
+        onLeaveBack: (batch) => gsap.set(batch, { opacity: 0, y: 100, overwrite: true }),
+      });
+
+      ScrollTrigger.addEventListener('refreshInit', () => {
+        gsap.set('.developer-card', { y: 0 });
+      });
     });
   });
-
-  ScrollTrigger.batch('.item', {
-    onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, stagger: { each: 0.15, grid: [1, 3] }, overwrite: true }),
-    onLeaveBack: (batch) => gsap.set(batch, { opacity: 0, y: 100, overwrite: true }),
-  });
-
-  ScrollTrigger.addEventListener('refreshInit', () => {
-    gsap.set('.item', { y: 0 });
-  });
-
-  
-
-
-  
 </script>
-
