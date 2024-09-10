@@ -1,0 +1,106 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+---
+
+
+<Layout>
+  <div class="mt-28">
+    <div class="container">
+      <div class="poster">
+        <p>Photo of the poster</p>
+      </div>
+      
+      <div class="description">
+        <h2>TITLE</h2>
+        <p>Description:</p>
+        <p>ahjskhjsdhljdckdjks ahnjsgjdkahjdka</p>
+      </div>
+      
+      <div class="sidebar">
+        <div>
+          <h3>MEET AT</h3>
+          <p>Souparnika</p>
+          <p>9:00 - 12:00</p>
+        </div>
+        
+        <div>
+          <p>Rules:</p>
+          <p>resules nd regulation</p>
+        </div>
+        
+        <div class="register-button">
+          Register
+        </div>
+        
+        <div class="organizer">
+          <p>Organiser details</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+
+<style>
+  
+  .container {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Two-column layout */
+    grid-template-rows: auto auto; /* Automatic row height */
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .poster {
+    grid-column: 1 /2 ;
+    grid-row: 1 / 2;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    height: 500px;
+  }
+
+  .description {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .sidebar {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+  }
+
+  .register-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #555;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .organizer {
+    margin-top: 20px;
+    background-color: #444;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+</style>
