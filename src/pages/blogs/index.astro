@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import BlogCard from '@components/BlogCard.astro';
 const blogs = [
   {
     id: 1,
@@ -79,55 +80,62 @@ const blogs = [
     authorId: 2,
   },
 ];
----
 
-<!-- ---
-import { db } from "@lib/db";
-import Layout from "../../layouts/Layout.astro";
-import { blogTable } from "@lib/db/schema";
+// import { db } from "@lib/db";
+// import { blogTable } from "@lib/db/schema";
 
-const blogs = await db
-  .select({
-    id: blogTable.id,
-    image: blogTable.image,
-    title: blogTable.title,
-    description: blogTable.description,
-  })
-  .from(blogTable);
+// const blogs = await db
+//   .select({
+//     id: blogTable.id,
+//     image: blogTable.image,
+//     title: blogTable.title,
+//     description: blogTable.description,
+//   })
+//   .from(blogTable);
 ---
 
 <Layout title="blogs">
-  <main class="mt-20 content-container">
-    <h1 class="text-4xl font-bold mb-8">Blogs</h1>
+  <main class="content-container">
+    <section class="mt-16 flex flex-col items-center">
+      <div class="lg:py-18 relative py-12 sm:py-14 md:py-16 xl:py-20 flex flex-col items-center gap-6 text-center">
+        <h1 class="fade-up uppercase text-6xl mx-auto max-w-screen-lg font-dirtyline ">ACE BLOGS</h1>
+        <p class="fade-up text-gray-200 font-syne-variable">Where creativity meets curiosity!</p>
+      </div>
 
-    <div class="flex gap-4">
-      {
-        blogs.map((blog) => (
-          <a href={`blogs/${blog.id}`} class="w-72 shadow-xl">
-            <figure>
-              <img id={blog.id.toString()} src={blog.image} alt={blog.title} class="aspect-[4/3] object-cover" />
-            </figure>
-            <div class="">
-              <h2 class="">{blog.title}</h2>
-              <p>{blog.description}</p>
-            </div>
-          </a>
-        ))
-      }
-    </div>
+      <div class="flex lg:flex-row flex-col-reverse gap-11">
+        <aside class="lg:w-56 xl:max-w-sm">
+          <div class="p-2 lg:p-4 xl:p-8 lg:border-b border-gray-700">
+            <h2 class="text-2xl">Popular posts</h2>
+            <ul class="mt-4 space-y-4 text-gray-400">
+              <li>
+                <a href="/blog/images/"> Better Images in Astro </a>
+              </li><li>
+                <a href="/blog/images/"> 2023 Web Framework Performance Report </a>
+              </li><li>
+                <a href="/blog/hybrid-rendering/"> Unlock New Possibilities with Hybrid Rendering </a>
+              </li><li>
+                <a href="/blog/netlify-official-deployment-partner/"> Netlify: Our Official Deployment Partner </a>
+              </li>
+            </ul>
+          </div>
+          <div class="lg:border-b border-gray-700 p-2 lg:p-4 xl:p-8">
+            <h2 class="text-2xl">Want to contribute?</h2>
+            <p class="mb-6 mt-4 text-gray-400">
+              Start writing your blogs here and be a part of the vibrant ACE community!
+            </p>
+            <a href="/blogs/edit"> Write a blog ✍🏻</a>
+          </div>
+        </aside>
+
+        <div class="flex flex-col justify-center items-center gap-8 md:gap-16 max-w-xl pt-6 lg:pt-8 xl:pt-10">
+          {blogs.map((blog) => <BlogCard blog={blog} />)}
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
+
 <style>
-  body {
-    overflow-x: hidden;
-  }
-  #tsparticles {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: -1; /* Ensures particles are behind other content */
-  }
   @keyframes slideUp {
     from {
       opacity: 0;
@@ -143,35 +151,34 @@ const blogs = await db
     transform: translateY(50px);
     animation: slideUp 1s ease-out forwards;
   }
-  #tsparticles canvas {
-    filter: blur(7px);
-  }
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import ScrollTrigger from 'gsap/src/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
+  document.addEventListener('astro:page-load', () => {
+    const cards = gsap.utils.toArray('.blog-card') as HTMLDivElement[];
 
-  const cards = gsap.utils.toArray('.item') as HTMLDivElement[];
+    window.gsapContext.add(() => {
+      cards.forEach((element, i) => {
+        gsap.set(element, { opacity: 0 });
+        gsap.from(element, {
+          y: 200,
+          duration: 0.75,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 100%',
+          },
+        });
+      });
 
-  cards.forEach((element, i) => {
-    gsap.set(element, { opacity: 0 });
-    gsap.from(element, {
-      y: 200,
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 100%',
-      },
+      ScrollTrigger.batch('.blog-card', {
+        onEnter: (batch) =>
+          gsap.to(batch, { opacity: 1, y: 0, stagger: { each: 0.15, grid: [1, 1] }, overwrite: true }),
+        onLeaveBack: (batch) => gsap.set(batch, { opacity: 0, y: 100, overwrite: true }),
+      });
+
+      ScrollTrigger.addEventListener('refreshInit', () => {
+        gsap.set('.blog-card', { y: 0 });
+      });
     });
-  });
-
-  ScrollTrigger.batch('.item', {
-    onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, stagger: { each: 0.15, grid: [1, 3] }, overwrite: true }),
-    onLeaveBack: (batch) => gsap.set(batch, { opacity: 0, y: 100, overwrite: true }),
-  });
-
-  ScrollTrigger.addEventListener('refreshInit', () => {
-    gsap.set('.item', { y: 0 });
   });
 </script>

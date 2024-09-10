@@ -1,15 +1,16 @@
 <section id="scene" class="overflow-hidden">
   <div data-depth="0.2" id="layer1" class="layer">
-    <img src="/images/sample.png" alt="" style="top:20%;left:20%;" loading="lazy" />
-    <img src="/images/sample.png" alt="" style="bottom:10%;left:70%;" loading="lazy" />
+    <img src="/images/sample.png" alt="" style="position:absolute; top:20%; left:20%;" loading="lazy" />
+    <img src="/images/sample.png" alt="" style="position:absolute; bottom:10%; left:70%;" loading="lazy" />
   </div>
 
   <div data-depth="0.4" id="layer2" class="layer">
     <div class="flex justify-around items-center m-auto w-full h-full">
-      <img src="/images/sample.png" alt="" style="bottom:10%;left:10%;" loading="lazy" />
-      <img src="/images/sample.png" alt="" style="bottom:60%;right:20%;" loading="lazy" />
+      <img src="/images/sample.png" alt="" style="position:absolute; bottom:10%; left:10%;" loading="lazy" />
+      <img src="/images/sample.png" alt="" style="position:absolute; bottom:60%; right:20%;" loading="lazy" />
     </div>
   </div>
+  
   <div data-depth="0.6" id="layer3" class="layer">
     <div class="flex justify-around items-center m-auto w-full h-full">
       <img src="/images/sample.png" alt="" loading="lazy" />
@@ -21,62 +22,53 @@
   section {
     width: 100%;
     height: max(100vh, 400px);
+    position: relative;
   }
+  
   section > div {
     width: 100%;
     height: 100%;
-  }
-
-  .blur-load {
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px;
-  }
-  .blur-load > img {
-    object-fit: cover;
-    object-position: center;
-    opacity: 0;
-    transform: opacity 200ms ease-in-out;
-  }
-  .blur-load.loaded > img {
-    opacity: 1;
-  }
-  #layer1 {
-    filter: brightness(0.6);
-    img {
-      height: 200px;
-      width: auto;
-    }
-  }
-  #layer2 {
-    filter: brightness(0.8);
-
-    img {
-      height: 250px;
-      width: auto;
-    }
-  }
-
-  #layer3 {
-    filter: brightness(1);
-
-    img {
-      height: 300px;
-      width: auto;
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   .layer {
-    position: relative;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
   .layer img {
-    @apply absolute w-full h-full;
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  #layer1 img {
+    filter: brightness(0.6);
+    height: 200px;
+    width: auto;
+  }
+
+  #layer2 img {
+    filter: brightness(0.8);
+    height: 250px;
+    width: auto;
+  }
+
+  #layer3 img {
+    filter: brightness(1);
+    height: 300px;
+    width: auto;
   }
 </style>
 
 <script>
   import Parallax from 'parallax-js';
-  const scene = document.getElementById('scene') as HTMLDivElement;
-  new Parallax(scene);
+  document.addEventListener('astro:page-load', () => {
+    const scene = document.getElementById('scene') as HTMLDivElement;
+    new Parallax(scene);
+  });
 </script>

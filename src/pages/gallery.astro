@@ -1,89 +1,54 @@
 ---
 import GalleryHero from '@components/GalleryHero.astro';
 import Layout from '@layouts/Layout.astro';
+import { getImages } from '../lib/cloudinary';
+import type { ResourceApiResponse } from 'cloudinary';
 
-const images = [
-  {
-    url: '/images/varshithitis.jpeg',
-    description: 'dnsjd',
-  },
-  {
-    url: '/images/sample.png',
-    description: 'dnsjd',
-  },
-  {
-    url: '/images/pexels-flodahm-699459.jpg',
-    description: 'dnsjd',
-  },
-  {
-    url: '/images/pexels-tirachard-kumtanom-112571-601170.jpg',
-    description: 'dnsjd',
-  },
-  {
-    url: '/images/pexels-djordje-petrovic-590080-2102416.jpg',
-    description: 'dnsjd',
-  },
-  {
-    url: '/images/pexels-flodahm-699459.jpg',
-    description: 'dnsjd',
-  },
-  {
-    url: '/images/pexels-lilartsy-1925536.jpg',
-    description: 'dnsjd',
-  },
-  {
-    url: '/images/pexels-flodahm-699459.jpg',
-    description: 'dnsjd',
-  },
-   {
-    url: '/images/varshithitis.jpeg',
-    description: 'dnsjd',
-  },
-  {
-    url: '/images/sample.png',
-    description: 'dnsjd',
-  },
-   {
-    url: '/images/varshithitis.jpeg',
-    description: 'dnsjd',
-  },
-   
-];
+let imagesDetails: ResourceApiResponse | null = null;
+
+try {
+  imagesDetails = await getImages('gallery');
+} catch (err) {
+  //handle error
+  console.error(err);
+}
 ---
 
 <Layout>
   <main>
     <GalleryHero />
     <section class="content-container w-full h-fit columns-1 sm:columns-2 md:columns-3 lg:columns-4">
-      {images.map((image) => <img src={image.url} alt={image.description} class="gallery-image mb-4 rounded-lg" />)}
+      {imagesDetails
+        ? imagesDetails.resources.map((image,i) => (
+            <img src={image.url} alt=`galary-image-${i}` class="gallery-image mb-4 rounded-lg" />
+          ))
+        : <p>Loading images...</p>}
     </section>
   </main>
 </Layout>
 
 <script>
-  import gsap from 'gsap';
-  import ScrollTrigger from 'gsap/src/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
+  document.addEventListener('astro:page-load', () => {
+    const images = gsap.utils.toArray('.gallery-image') as HTMLImageElement[];
 
-  const images = gsap.utils.toArray('.gallery-image') as HTMLImageElement[];
-
-  images.forEach((element) => {
-    gsap.fromTo(
-      element,
-      {
-        filter: 'blur(10px)',
-        scale: 0.95,
-      },
-      {
-        duration: 0.5,
-        scale: 1.0,
-        filter: 'blur(0px)',
-        scrollTrigger: {
-          start: 'top 70%',
-          trigger: element,
-          toggleActions: 'restart none none none',
+    images.forEach((element) => {
+      gsap.fromTo(
+        element,
+        {
+          filter: 'blur(10px)',
+          scale: 0.95,
         },
-      }
-    );
+        {
+          duration: 0.5,
+          scale: 1.0,
+          filter: 'blur(0px)',
+          scrollTrigger: {
+            start: 'top 70%',
+            trigger: element,
+            toggleActions: 'restart none none none',
+          },
+        }
+      );
+    });
   });
 </script>

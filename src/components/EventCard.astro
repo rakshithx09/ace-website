@@ -1,38 +1,9 @@
 ---
-import { Image } from 'astro:assets';
 
-interface Props {
-  image: ImageMetadata;
-}
 
-const { image } = Astro.props;
+
+
 ---
-
-<!-- <div
-  class="max-w-[300px] overflow-hidden rounded-xl mt-2 bg-[#131821] shadow-sm shadow-[#5d5284] hover:shadow-md hover:shadow-[#5d5284] hover:scale-[1.05]"
->
-  <div class="flex flex-col justify-center">
-    <div class="flex py-4 h-full w-full justify-center">
-      <div class="aspect-square w-[90%] h-full object-fill rounded-lg overflow-hidden">
-        <img src="/images/sample.png" alt="event" class="w-full h-full object-fill" />
-      </div>
-    </div>
-    <div class="flex flex-col justify-center w-full items-center">
-      <div class="w-[90%] h-full">
-        <h1 class="text-lg font-medium">Overseas</h1>
-
-        <p>Venue: Sambhram</p>
-        <p>Date: 12/12/2022</p>
-        <div class="mt-4 mb-6 flex items-center justify-between">
-          <div class="h-10 w-10">
-            <img src="images/logo.png" alt="logo" class="w-full h-full object-fill" />
-          </div>
-          <button class="rounded-full p-2 bg-[#24397f] text-xs">Register</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 
 <div class="card max-w-[300px] w-[300px] h-[410px] rounded-xl relative bg-[#1b1b1b]">
@@ -44,18 +15,15 @@ const { image } = Astro.props;
   </div>
    
   <div class="card-price-tag">
-    <span class="price-value">Register now</span>
+    <span class="price-value">view event</span>
   </div>
  
   <div class="card-info">
     <div class="left-info">
-      <span class="product-title truncate text-lg pt-2"
-        >Face Painting
-      </span>
+      <span class="product-title truncate text-lg pt-2">Face Painting</span>
       <p class="feature-sub-title text-sm font-bold">Type</p>
-          <span class="feature-desc">Technical</span>
-          <p class=" font-extrabold bg-[#9232a2] rounded-full w-fit text-white px-2 py-1 text-lg">SOLO</p>
-          
+      <span class="feature-desc">Technical</span>
+      <p class="font-extrabold bg-[#0664FC] rounded-full w-fit text-white px-2 py-1 text-lg">SOLO</p>
     </div>
     <div class="right-info">
       <ul class="features-list">
@@ -71,178 +39,181 @@ const { image } = Astro.props;
     </div>
   </div>
   <div class="add-to-cart-btn">
-    <button class="ml-3">Register</button>
+    <button class=" mr-9">View Event</button>
   </div>
 </div>
 
 <style>
-    /* From Uiverse.io by sofiapetushok */ 
-ul {
-  list-style: none;
-  padding: 0;
-}
-.card {
-  overflow: hidden;
-}
-.card .card-image {
-  position: relative;
-  display: block;
-  margin: auto;
-  color: #c8c8c8;
-  filter: drop-shadow(0 0 5px #111111);
-}
+  ul {
+    list-style: none;
+    padding: 0;
+  }
 
-.card .card-info {
-  height: 100%;
-  border-radius: 12px 12px 0 0;
-  width: 100%;
-  color: #fff;
-  display: flex;
-  background: linear-gradient(#4f4f4f64, transparent);
-}
-.card .card-info {
-  font-size: 0.8rem;
-  max-height: 150px;
+  .card {
+    overflow: hidden;
+  }
 
-}
+  .card .card-image {
+    position: relative;
+    display: block;
+    margin: auto;
+    color: #c8c8c8;
+    filter: drop-shadow(0 0 5px #111111);
+  }
 
-.card .card-info .left-info{
+  .card .card-info {
+    height: 100%;
+    border-radius: 12px 12px 0 0;
+    width: 100%;
+    color: #fff;
+    display: flex;
+    background: linear-gradient(#4f4f4f64, transparent);
+  }
+
+  .card .card-info {
+    font-size: 0.8rem;
+    max-height: 150px;
+  }
+
+  .card .card-info .left-info {
     width: 52%;
-}
+  }
 
-.card .card-info .right-info{
+  .card .card-info .right-info {
     width: 48%;
-}
+  }
 
-.card .card-info .left-info .feature-sub-title{
+  .card .card-info .left-info .feature-sub-title {
     font-size: 13px;
     font-weight: bold;
-}
-.card .card-info .left-info,
-.card .card-info .right-info {
+  }
+
+  .card .card-info .left-info,
+  .card .card-info .right-info {
     font-size: 12px;
-  padding: 16px;
-}
-.card .card-info .left-info .product-title {
-  
-  line-height: 1.1;
-  letter-spacing: 0.4px;
-  font-weight: bold;
-  margin-bottom: 18px;
-  display: block;
-}
-.card .card-info p {
-  font-size: 10px;
-  margin-top: 12px;
-  line-height: 1.2;
-  letter-spacing: 0.3px;
-  font-weight: normal;
-}
+    padding: 16px;
+  }
 
+  .card .card-info .left-info .product-title {
+    line-height: 1.1;
+    letter-spacing: 0.4px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    display: block;
+  }
 
-.card .card-info .right-info {
-  margin: 0;
-  position: relative;
-}
-.card .card-info .right-info::before {
-  position: absolute;
-  content: "";
-  width: 2px;
-  height: calc(100% - 20px);
-  background: #df29ff;
-  left: -5px;
-}
+  .card .card-info p {
+    font-size: 10px;
+    margin-top: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+    font-weight: normal;
+  }
 
-.card .card-info .right-info ul {
-  margin: 0;
-  list-style: none;
-}
-.card .card-info .right-info ul li {
-  padding: 0;
-  
-  margin: 25px 0;
-}
-.card .card-info .right-info ul li:first-child {
-  margin-top: 0;
-}
-.card .card-info .right-info ul li p.feature-sub-title {
-  font-size: 12px;
-  margin-bottom: 5px;
-  letter-spacing: 0.3px;
-  line-height: 1;
-  color: #e96dff;
-  font-weight: bold;
-  text-transform: uppercase;
-}
+  .card .card-info .right-info {
+    margin: 0;
+    position: relative;
+  }
 
-.feature-sub-title{
+  .card .card-info .right-info::before {
+    position: absolute;
+    content: "";
+    width: 2px;
+    height: calc(100% - 20px);
+    background: rgb(6, 100, 252);
+    left: -5px;
+  }
+
+  .card .card-info .right-info ul {
+    margin: 0;
+    list-style: none;
+  }
+
+  .card .card-info .right-info ul li {
+    padding: 0;
+    margin: 25px 0;
+  }
+
+  .card .card-info .right-info ul li:first-child {
+    margin-top: 0;
+  }
+
+  .card .card-info .right-info ul li p.feature-sub-title {
     font-size: 12px;
-  margin-bottom: 5px;
-  letter-spacing: 0.3px;
-  line-height: 1;
-  color: #e96dff;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.card .card-info .right-info ul li .feature-sub-title:first-child {
-  margin-top: 0;
-}
-.add-to-cart-btn {
-  
-  position: absolute;
-  left:35%;
-  bottom: 12px;
-  margin-top: 20px;
-    width: 100%;  
-}
-.add-to-cart-btn button {
-  border: none;
-  font-size: 10px;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    #f532f1 40%,
-    #f532f1,
-    #a141fb 60%,
-    transparent
-  );
-  padding: 6px 10px;
-  color: #fff;
-  font-weight: bold;
-  background-size: 200%;
-  background-position: 0% 0%;
-  text-transform: uppercase;
-  border-radius: 30px;
-  transition: 0.4s ease-in-out;
-}
-.card .card-price-tag {
-  position: absolute;
-  right: 12px;
-  top: 0;
-  color: #fff;
-  font-size: 0.6rem;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 0 0 5px 5px;
-  background: linear-gradient(#df29ff, #dc0ba5);
-}
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+    line-height: 1;
+    color: rgb(6, 100, 252);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 
-.card::before {
-  position: absolute;
-  content: "";
-  height: 90px;
-  width: 90px;
-  border-radius: 50%;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(245, 46, 255);
-  filter: blur(25px);
-  box-shadow: 0 0 70px 0 #f51cf1;
-}
+  .feature-sub-title {
+    font-size: 12px;
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+    line-height: 1;
+    color: rgb(6, 100, 252);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 
-.card .add-to-cart-btn button:hover {
-  background-position: 100% 100%;
-}
+  .add-to-cart-btn {
+    position: absolute;
+    left: 35%;
+    bottom: 12px;
+    margin-top: 30px;
+    width: 100%;
+  }
 
+  .add-to-cart-btn button {
+    border: none;
+    font-size: 10px;
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgb(6, 100, 252) 40%,
+      rgb(6, 100, 252),
+      #b0d1ff 60%,
+      transparent
+    );
+    padding: 6px 10px;
+    color: #fff;
+    font-weight: bold;
+    background-size: 200%;
+    background-position: 0% 0%;
+    text-transform: uppercase;
+    border-radius: 30px;
+    transition: 0.4s ease-in-out;
+  }
+
+  .card .card-price-tag {
+    position: absolute;
+    right: 12px;
+    top: 0;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 0 0 5px 5px;
+    background: linear-gradient(rgb(6, 100, 252), #08388f);
+  }
+
+  .card::before {
+    position: absolute;
+    content: "";
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(6, 100, 252);
+    filter: blur(25px);
+    box-shadow: 0 0 70px 0 #0655d0;
+  }
+
+  .card .add-to-cart-btn button:hover {
+    background-position: 100% 100%;
+  }
 </style>

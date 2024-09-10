@@ -4,7 +4,8 @@ import "../styles/global.css";
 
 const teamMembers2023 = [
   { name: 'James Henry', position: 'HOD', image: '/images/sample.png' },
-  { name: 'John Doe', position: 'Assistant Professor', image: '/images/sample.png' }
+  { name: 'John Doe', position: 'Assistant Professor', image: '/images/sample.png' },
+  { name: 'Srinivasa', position: 'Professor II', image: '/images/sample.png' }
 ];
 
 const teamMembers2024 = [
@@ -16,6 +17,7 @@ const faculty = [
   { name: 'James', position: 'HOD', image: '/images/sample.png' },
   { name: 'Hari', position: 'Assistant Professor', image: '/images/sample.png' },
   { name: 'Vatsala', position: 'Professor', image: '/images/sample.png' },
+  { name: 'Srinivasa', position: 'Professor II', image: '/images/sample.png' },
   { name: 'Srinivasa', position: 'Professor II', image: '/images/sample.png' }
 ];
 ---
@@ -98,6 +100,7 @@ const faculty = [
   flex-direction: column;
   width: 100%;
   margin-top: 100px;
+  align-items: center; /* Center the tabs container */
 }
 
 .tabs input[type="radio"] {
@@ -106,15 +109,15 @@ const faculty = [
 
 .tabs ul {
   display: flex;
+  justify-content: center; /* Center the tabs */
+  gap: 20px; /* Adjust space between tabs */
   list-style: none;
   padding: 0;
   margin: 0;
-  justify-content: center;
-  gap: 10%;
 }
 
 .tabs ul li {
-  flex: auto;
+  flex: none; 
 }
 
 .tabs ul li label {
@@ -237,6 +240,25 @@ const faculty = [
 .card:hover .content .contentBx h3 {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Mobile view styles */
+@media (max-width: 768px) {
+  .card .content {
+    bottom: 0 !important;
+    transition: none; /* Disable transition on mobile to make it always visible */
+  }
+  
+  .card:hover .content {
+    bottom: 0; /* Ensure it's always visible */
+    transition-delay: 0; /* Disable the transition delay on hover for mobile */
+  }
+
+  .content .contentBx h3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition: none; /* Disable transition for mobile */
+  }
 }
 
 </style>
